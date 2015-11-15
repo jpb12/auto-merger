@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="MergeConfig">
+		<xs:complexType>
+			<xs:sequence minOccurs="1" maxOccurs="unbounded">
+				<xs:element name="Project" type="ProjectType"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="ProjectType">
+		<xs:sequence minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="Merge" type="MergeType"/>
+		</xs:sequence>
+		<xs:attribute name="ProjectUrl" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="MergeType">
+		<xs:attribute name="Parent" type="xs:string" use="required"/>
+		<xs:attribute name="Child" type="xs:string" use="required"/>
+		<xs:attribute name="Enabled" type="xs:boolean" use="required"/>
+	</xs:complexType>
+</xs:schema>

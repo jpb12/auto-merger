@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<MergeConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.w3schools.com Merges.xsd">
+	<Project ProjectUrl="http://some-repository">
+		<Merge Parent="trunk" Child="my-branch" Enabled="true"/>
+	</Project>
+</MergeConfig>
