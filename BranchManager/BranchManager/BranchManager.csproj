@@ -199,7 +199,12 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\BranchManager.Core\BranchManager.Core.csproj">
+      <Project>{6a4d0d56-c62a-4820-b205-309beb1b4be7}</Project>
+      <Name>BranchManager.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
