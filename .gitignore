@@ -1,5 +1,5 @@
-/BranchManager/*.suo
 /BranchManager/BranchManager/*.user
 /BranchManager/*/bin
 /BranchManager/*/obj
 /BranchManager/packages
+/BranchManager/.vs

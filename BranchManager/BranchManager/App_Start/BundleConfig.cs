@@ -8,7 +8,8 @@ namespace BranchManager
 		{
 			bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/Site.css"));
 
-			bundles.Add(new ScriptBundle("~/Scripts/react").Include(
+			bundles.Add(new ScriptBundle("~/Scripts/libraries").Include(
+				"~/Scripts/d3.js",
 				"~/Scripts/react.js",
 				"~/Scripts/react-dom.js"));
 
