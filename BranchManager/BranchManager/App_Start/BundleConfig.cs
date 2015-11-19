@@ -13,7 +13,9 @@ namespace BranchManager
 				"~/Scripts/react.js",
 				"~/Scripts/react-dom.js"));
 
-			bundles.Add(new ScriptBundle("~/Scripts/app").Include("~/JS/App.js"));
+			bundles.Add(new ScriptBundle("~/Scripts/app").Include(
+				"~/JS/Components.js",
+				"~/JS/App.js"));
 		}
 	}
 }
