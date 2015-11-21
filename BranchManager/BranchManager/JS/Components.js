@@ -15,28 +15,43 @@
 
 var Node = React.createClass({
 	displayName: 'Node',
-	render: function () {
+	render: function() {
 		return (
 			React.createElement(
 				'g',
 				{
 					transform: 'translate(' + (this.props.node.y + 50) + ', ' + (this.props.node.x + 50) + ')'
 				},
-				React.createElement(Circle)));
+				React.createElement(Circle),
+				React.createElement(Text, {name: this.props.node.name})));
 	}
 });
 
 var Circle = React.createClass({
 	displayName: 'Circle',
-	render: function () {
+	render: function() {
 		return (
 			React.createElement('circle'));
 	}
 })
 
+var Text = React.createClass({
+	displayName: 'Text',
+	render: function() {
+		return (
+			React.createElement(
+				'text',
+				{
+					x: 7,
+					y: 3.5
+				},
+				this.props.name))
+	}
+});
+
 var Link = React.createClass({
 	displayName: 'Link',
-	render: function () {
+	render: function() {
 		return (
 			React.createElement(
 				'path',
@@ -45,4 +60,4 @@ var Link = React.createClass({
 					transform: 'translate(50, 50)'
 				}))
 	}
-})
+});
