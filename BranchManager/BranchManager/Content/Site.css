@@ -2,3 +2,8 @@
 	fill: #2a34e2;
 	r: 4.5;
 }
+
+path {
+	fill: none;
+	stroke: #7eebff;
+}

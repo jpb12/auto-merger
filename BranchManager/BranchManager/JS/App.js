@@ -25,10 +25,11 @@
 	var tree = d3.layout.tree().size([500, 500]);
 
 	var nodes = tree.nodes(data);
+	var links = tree.links(nodes);
 
-	console.log(nodes);
+	var diagonal = d3.svg.diagonal().projection(function (d) { return [d.y, d.x]; });
 
 	ReactDOM.render(
-		React.createElement(TreeRoot, { nodes: nodes }),
+		React.createElement(TreeRoot, { nodes: nodes, links: links, diagonal: diagonal }),
 		document.getElementById('tree-container'));
 })();
