@@ -1,3 +1,7 @@
+/AutoMerger/AutoMerger/bin
+/AutoMerger/AutoMerger/obj
+/AutoMerger/packages
+/AutoMerger/.vs
 /BranchManager/BranchManager/*.user
 /BranchManager/*/bin
 /BranchManager/*/obj
