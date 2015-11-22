@@ -11,8 +11,8 @@ namespace AutoMerger
 			var config = new MergeConfig();
 
 			// TODO: Ninject
-			var svnInterface = new SvnInterface();
 			var configManager = new ConfigManager();
+			var svnInterface = new SvnInterface(configManager);
 			var merger = new Merger(svnInterface, configManager);
 			var projectMerger = new ProjectMerger(merger);
 

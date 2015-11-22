@@ -16,6 +16,15 @@ namespace AutoMerger.Core
 
 	class SvnInterface : ISvnInterface
 	{
+		private readonly string _userName;
+		private readonly string _password;
+
+		public SvnInterface(IConfigManager configManager)
+		{
+			_userName = configManager.GetConfigValue(ConfigKey.UserName);
+			_password = configManager.GetConfigValue(ConfigKey.Password);
+		}
+
 		public bool Checkout(string projectUrl, string branch, string folderPath)
 		{
 			var svnPath = GetSvnPath(projectUrl, branch);
@@ -24,7 +33,7 @@ namespace AutoMerger.Core
 			{
 				IgnoreExternals = true
 			};
-			using(var svnClient = new SvnClient())
+			using(var svnClient = CreateSvnClient())
 			{
 				return svnClient.CheckOut(svnPath, folderPath, args);
 			}
@@ -39,7 +48,7 @@ namespace AutoMerger.Core
 				IgnoreExternals = true
 			};
 
-			using (var svnClient = new SvnClient())
+			using (var svnClient = CreateSvnClient())
 			{
 				svnClient.Status(
 					folderPath,
@@ -66,7 +75,7 @@ namespace AutoMerger.Core
 				IgnoreExternals = true
 			};
 
-			using (var svnClient = new SvnClient())
+			using (var svnClient = CreateSvnClient())
 			{
 				svnClient.Status(
 					folderPath,
@@ -83,7 +92,7 @@ namespace AutoMerger.Core
 
 		public bool Commit(string folderPath)
 		{
-			using (var svnClient = new SvnClient())
+			using (var svnClient = CreateSvnClient())
 			{
 				return svnClient.Commit(folderPath);
 			}
@@ -100,7 +109,7 @@ namespace AutoMerger.Core
 
 			var range = new SvnRevisionRange(new SvnRevision(1), new SvnRevision(DateTime.Now));
 
-			using (var svnClient = new SvnClient())
+			using (var svnClient = CreateSvnClient())
 			{
 				return svnClient.Merge(folderPath, svnPath, range, args);
 			}
@@ -113,7 +122,7 @@ namespace AutoMerger.Core
 				IgnoreExternals = true
 			};
 
-			using (var svnClient = new SvnClient())
+			using (var svnClient = CreateSvnClient())
 			{
 				return svnClient.Update(folderPath, args);
 			}
@@ -127,6 +136,13 @@ namespace AutoMerger.Core
 			}
 
 			return new SvnUriTarget(Path.Combine(projectUrl, "branches", branch));
+		}
+
+		private SvnClient CreateSvnClient()
+		{
+			var client = new SvnClient();
+			client.Authentication.ForceCredentials(_userName, _password);
+			return client;
 		}
 	}
 }

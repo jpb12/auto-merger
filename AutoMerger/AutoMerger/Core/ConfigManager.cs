@@ -4,7 +4,9 @@ namespace AutoMerger.Core
 {
 	enum ConfigKey
 	{
-		MergesFolder
+		MergesFolder,
+		Password,
+		UserName
 	}
 
 	interface IConfigManager
