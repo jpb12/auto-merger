@@ -13,10 +13,10 @@ namespace AutoMerger.Core
 		private readonly ISvnInterface _svnInterface;
 		private readonly string _mergesFolder;
 
-		public Merger(ISvnInterface svnInterface, IConfigManager configManager)
+		public Merger(ISvnInterface svnInterface, IConfigurationManager configManager)
 		{
 			_svnInterface = svnInterface;
-			_mergesFolder = configManager.GetConfigValue(ConfigKey.MergesFolder);
+			_mergesFolder = configManager.GetStringValue(ConfigKey.MergesFolder);
 		}
 
 		public void Merge(string projectUrl, string parent, string child)

@@ -19,10 +19,10 @@ namespace AutoMerger.Core
 		private readonly string _userName;
 		private readonly string _password;
 
-		public SvnInterface(IConfigManager configManager)
+		public SvnInterface(IConfigurationManager configManager)
 		{
-			_userName = configManager.GetConfigValue(ConfigKey.UserName);
-			_password = configManager.GetConfigValue(ConfigKey.Password);
+			_userName = configManager.GetStringValue(ConfigKey.UserName);
+			_password = configManager.GetStringValue(ConfigKey.Password);
 		}
 
 		public bool Checkout(string projectUrl, string branch, string folderPath)

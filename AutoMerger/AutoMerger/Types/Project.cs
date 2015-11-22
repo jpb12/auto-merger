@@ -9,6 +9,6 @@ namespace BranchManager.Core.Types
 		public string ProjectUrl { get; set; }
 
 		[XmlElement("Merge")]
-		public IList<Merge> Merges { get; set; }
+		public List<Merge> Merges { get; set; }
 	}
 }

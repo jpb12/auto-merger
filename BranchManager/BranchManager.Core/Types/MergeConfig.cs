@@ -5,7 +5,7 @@ namespace BranchManager.Core.Types
 {
 	public class MergeConfig
 	{
-		[XmlElement("Peoject")]
-		public IList<Project> Projects { get; set; }
+		[XmlElement("Project")]
+		public List<Project> Projects { get; set; }
 	}
 }
