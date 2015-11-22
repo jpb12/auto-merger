@@ -54,8 +54,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\SvnInterface.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Types\Merge.cs" />
+    <Compile Include="Types\MergeConfig.cs" />
+    <Compile Include="Types\Project.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
