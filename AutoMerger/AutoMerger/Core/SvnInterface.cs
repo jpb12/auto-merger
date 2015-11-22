@@ -1,6 +1,7 @@
 ﻿using SharpSvn;
 using System;
 using System.IO;
+using System.Linq;
 
 namespace AutoMerger.Core
 {
@@ -9,7 +10,7 @@ namespace AutoMerger.Core
 		bool Checkout(string projectUrl, string branch, string folderPath);
 		bool CheckForConflicts(string folderPath);
 		bool CheckForModifications(string folderPath);
-		bool Commit(string folderPath);
+		bool Commit(string folderPath, string message);
 		bool Merge(string projectUrl, string parentBranch, string folderPath);
 		bool Update(string folderPath);
 	}
@@ -90,11 +91,16 @@ namespace AutoMerger.Core
 			return modified;
 		}
 
-		public bool Commit(string folderPath)
+		public bool Commit(string folderPath, string message)
 		{
+			var args = new SvnCommitArgs
+			{
+				LogMessage = message
+			};
+
 			using (var svnClient = CreateSvnClient())
 			{
-				return svnClient.Commit(folderPath);
+				return svnClient.Commit(folderPath, args);
 			}
 		}
 
@@ -132,17 +138,41 @@ namespace AutoMerger.Core
 		{
 			if (branch == "trunk")
 			{
-				return new SvnUriTarget(Path.Combine(projectUrl, branch));
+				return new SvnUriTarget(UriCombine(projectUrl, branch));
 			}
 
-			return new SvnUriTarget(Path.Combine(projectUrl, "branches", branch));
+			return new SvnUriTarget(UriCombine(projectUrl, "branches", branch));
 		}
 
 		private SvnClient CreateSvnClient()
 		{
 			var client = new SvnClient();
-			client.Authentication.ForceCredentials(_userName, _password);
+
+			if (!string.IsNullOrEmpty(_userName) && !string.IsNullOrEmpty(_password))
+			{
+				client.Authentication.ForceCredentials(_userName, _password);
+			}
+
 			return client;
+		}
+
+		private string UriCombine(params string[] uriStrings)
+		{
+			var uri = uriStrings[0];
+
+			foreach(var uriString in uriStrings.Skip(1))
+			{
+				if (!uri.EndsWith("/"))
+				{
+					uri += '/';
+				}
+
+				uriString.TrimEnd('/');
+
+				uri += uriString;
+			}
+
+			return uri;
 		}
 	}
 }

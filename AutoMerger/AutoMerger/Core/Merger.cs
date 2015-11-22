@@ -23,12 +23,12 @@ namespace AutoMerger.Core
 		{
 			var folderPath = Path.Combine(
 				_mergesFolder,
-				projectUrl.Replace('/', '_'),
+				projectUrl.Substring(projectUrl.LastIndexOf('/') + 1),
 				child);
 
 			PrepareWorkingCopy(projectUrl, child, folderPath);
 
-			PerformMerge(projectUrl, parent, folderPath);
+			PerformMerge(projectUrl, parent, child, folderPath);
 		}
 
 		private void PrepareWorkingCopy(string projectUrl, string child, string folderPath)
@@ -54,22 +54,30 @@ namespace AutoMerger.Core
 			}
 		}
 
-		private void PerformMerge(string projectUrl, string parent, string folderPath)
+		private void PerformMerge(string projectUrl, string parent, string child, string folderPath)
 		{
 			if (!_svnInterface.Merge(projectUrl, parent, folderPath))
 			{
 				throw new InvalidOperationException("Unable to merge into working copy.");
 			}
 
-			if (!_svnInterface.CheckForConflicts(folderPath))
+			if (_svnInterface.CheckForConflicts(folderPath))
 			{
 				throw new InvalidOperationException("Working copy contained conflicts after merge.");
 			}
 
-			if (!_svnInterface.Commit(folderPath))
+			if (!_svnInterface.Commit(folderPath, GetCommitMessage(parent, child)))
 			{
 				throw new InvalidOperationException("Unable to commit changes from working copy.");
 			}
+		}
+
+		private string GetCommitMessage(string parent, string child)
+		{
+			return string.Format(
+				"Merging revisions from {0} to {1}",
+				parent,
+				child);
 		}
 	}
 }
