@@ -12,10 +12,12 @@ namespace AutoMerger.Core
 
 	class ConfigGetter
 	{
+		private readonly ISvnInterface _svnInterface;
 		private readonly IConfigurationManager _configManager;
 
-		public ConfigGetter(IConfigurationManager configManager)
+		public ConfigGetter(ISvnInterface svnInterface, IConfigurationManager configManager)
 		{
+			_svnInterface = svnInterface;
 			_configManager = configManager;
 		}
 
@@ -23,12 +25,16 @@ namespace AutoMerger.Core
 		{
 			var configLocation = _configManager.GetStringValue(ConfigKey.MergeConfig);
 
+			var xmlSerializer = new XmlSerializer(typeof(MergeConfig));
+
 			if (_configManager.GetBoolValue(ConfigKey.ConfigIsInSvn))
 			{
-				// TODO
+				var stream = _svnInterface.Cat(configLocation);
+				using (var reader = new XmlTextReader(stream))
+				{
+					return (MergeConfig)xmlSerializer.Deserialize(reader);
+				}
 			}
-
-			var xmlSerializer = new XmlSerializer(typeof(MergeConfig));
 
 			using (var reader = new XmlTextReader(configLocation))
 			{

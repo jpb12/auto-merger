@@ -8,8 +8,8 @@ namespace AutoMerger
 		{
 			// TODO: Ninject
 			var configManager = new ConfigurationManager();
-			var configGetter = new ConfigGetter(configManager);
 			var svnInterface = new SvnInterface(configManager);
+			var configGetter = new ConfigGetter(svnInterface, configManager);
 			var merger = new Merger(svnInterface, configManager);
 			var projectMerger = new ProjectMerger(merger);
 

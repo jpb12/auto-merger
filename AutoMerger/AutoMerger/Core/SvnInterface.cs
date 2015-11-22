@@ -7,6 +7,7 @@ namespace AutoMerger.Core
 {
 	interface ISvnInterface
 	{
+		Stream Cat(string path);
 		bool Checkout(string projectUrl, string branch, string folderPath);
 		bool CheckForConflicts(string folderPath);
 		bool CheckForModifications(string folderPath);
@@ -24,6 +25,18 @@ namespace AutoMerger.Core
 		{
 			_userName = configManager.GetStringValue(ConfigKey.UserName);
 			_password = configManager.GetStringValue(ConfigKey.Password);
+		}
+
+		public Stream Cat(string path)
+		{
+			var stream = new MemoryStream();
+
+			using(var svnClient = CreateSvnClient())
+			{
+				svnClient.Write(path, stream);
+			}
+
+			return stream;
 		}
 
 		public bool Checkout(string projectUrl, string branch, string folderPath)
