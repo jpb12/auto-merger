@@ -7,6 +7,7 @@ namespace AutoMerger.Core
 	interface ISvnInterface
 	{
 		bool Checkout(string projectUrl, string branch, string folderPath);
+		bool CheckForConflicts(string folderPath);
 		bool CheckForModifications(string folderPath);
 		bool Commit(string folderPath);
 		bool Merge(string projectUrl, string parentBranch, string folderPath);
@@ -27,6 +28,33 @@ namespace AutoMerger.Core
 			{
 				return svnClient.CheckOut(svnPath, folderPath, args);
 			}
+		}
+
+		public bool CheckForConflicts(string folderPath)
+		{
+			var conflicted = false;
+
+			var args = new SvnStatusArgs
+			{
+				IgnoreExternals = true
+			};
+
+			using (var svnClient = new SvnClient())
+			{
+				svnClient.Status(
+					folderPath,
+					args,
+					(sender, e) =>
+					{
+						if (e.Conflicted)
+						{
+							conflicted = true;
+							e.Cancel = true;
+						}
+					});
+			}
+
+			return conflicted;
 		}
 
 		public bool CheckForModifications(string folderPath)
