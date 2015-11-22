@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="Core\ConfigManager.cs" />
     <Compile Include="Core\Merger.cs" />
+    <Compile Include="Core\ProjectMerger.cs" />
     <Compile Include="Core\SvnInterface.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

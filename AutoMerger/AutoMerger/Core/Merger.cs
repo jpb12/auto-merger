@@ -3,7 +3,12 @@ using System.IO;
 
 namespace AutoMerger.Core
 {
-	class Merger
+	interface IMerger
+	{
+		void Merge(string projectUrl, string parent, string child);
+	}
+
+	class Merger : IMerger
 	{
 		private readonly ISvnInterface _svnInterface;
 		private readonly string _mergesFolder;
