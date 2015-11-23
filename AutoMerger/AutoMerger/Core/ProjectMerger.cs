@@ -1,6 +1,8 @@
 ﻿using BranchManager.Core.Types;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace AutoMerger.Core
 {
@@ -12,10 +14,12 @@ namespace AutoMerger.Core
 	class ProjectMerger : IProjectMerger
 	{
 		private readonly IMerger _merger;
+		private readonly IThreadManager _threadManager;
 
-		public ProjectMerger(IMerger merger)
+		public ProjectMerger(IMerger merger, IThreadManager threadManager)
 		{
 			_merger = merger;
+			_threadManager = threadManager;
 		}
 
 		public void MergeProject(Project project)
@@ -26,19 +30,24 @@ namespace AutoMerger.Core
 
 			foreach(var merge in rootMerges)
 			{
-				HandleMerge(project.ProjectUrl, merge, enabledMerges);
+				Task.Factory.StartNew(() => HandleMerge(project.ProjectUrl, merge, enabledMerges));
 			}
 		}
 
 		private void HandleMerge(string projectUrl, Merge merge, ReadOnlyCollection<Merge> merges)
 		{
+			while (!_threadManager.TryStartThread())
+			{
+				Thread.Sleep(1000);
+			}
+
 			_merger.Merge(projectUrl, merge.Parent, merge.Child);
 
 			var childMerges = merges.Where(m => merge.Child == m.Parent);
 
 			foreach(var childMerge in childMerges)
 			{
-				HandleMerge(projectUrl, childMerge, merges);
+				Task.Factory.StartNew(() => HandleMerge(projectUrl, childMerge, merges));
 			}
 		}
 	}

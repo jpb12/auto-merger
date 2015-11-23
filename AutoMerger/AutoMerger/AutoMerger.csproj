@@ -60,6 +60,7 @@
     <Compile Include="Core\Merger.cs" />
     <Compile Include="Core\ProjectMerger.cs" />
     <Compile Include="Core\SvnInterface.cs" />
+    <Compile Include="Core\ThreadManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Types\Merge.cs" />

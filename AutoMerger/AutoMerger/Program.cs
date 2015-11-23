@@ -1,4 +1,5 @@
 ﻿using AutoMerger.Core;
+using System.Threading.Tasks;
 
 namespace AutoMerger
 {
@@ -11,13 +12,14 @@ namespace AutoMerger
 			var svnInterface = new SvnInterface(configManager);
 			var configGetter = new ConfigGetter(svnInterface, configManager);
 			var merger = new Merger(svnInterface, configManager);
-			var projectMerger = new ProjectMerger(merger);
+			var threadManager = new ThreadManager(configManager);
+			var projectMerger = new ProjectMerger(merger, threadManager);
 
 			var config = configGetter.GetConfig();
 
 			foreach(var project in config.Projects)
 			{
-				projectMerger.MergeProject(project);
+				Task.Factory.StartNew(() => projectMerger.MergeProject(project));
 			}
 		}
 	}
