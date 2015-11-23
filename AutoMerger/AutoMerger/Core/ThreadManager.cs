@@ -18,6 +18,7 @@
 			var threads = configManager.GetIntValue(ConfigKey.Threads);
 			_maxThreads = threads > 0 ? threads : (int?)null;
 			_runningThreads = 0;
+			_lock = new object();
 		}
 
 		public bool TryStartThread()

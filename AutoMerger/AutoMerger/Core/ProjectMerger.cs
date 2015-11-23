@@ -1,4 +1,5 @@
 ﻿using BranchManager.Core.Types;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading;
@@ -28,10 +29,14 @@ namespace AutoMerger.Core
 
 			var rootMerges = enabledMerges.Where(m1 => enabledMerges.All(m2 => m1.Parent != m2.Child));
 
-			foreach(var merge in rootMerges)
+			var tasks = new List<Task>();
+
+			foreach (var merge in rootMerges)
 			{
-				Task.Factory.StartNew(() => HandleMerge(project.ProjectUrl, merge, enabledMerges));
+				tasks.Add(Task.Factory.StartNew(() => HandleMerge(project.ProjectUrl, merge, enabledMerges)));
 			}
+
+			tasks.ForEach(t => t.Wait());
 		}
 
 		private void HandleMerge(string projectUrl, Merge merge, ReadOnlyCollection<Merge> merges)
@@ -45,10 +50,14 @@ namespace AutoMerger.Core
 
 			var childMerges = merges.Where(m => merge.Child == m.Parent);
 
-			foreach(var childMerge in childMerges)
+			var tasks = new List<Task>();
+
+			foreach (var childMerge in childMerges)
 			{
-				Task.Factory.StartNew(() => HandleMerge(projectUrl, childMerge, merges));
+				tasks.Add(Task.Factory.StartNew(() => HandleMerge(projectUrl, childMerge, merges)));
 			}
+
+			tasks.ForEach(t => t.Wait());
 		}
 	}
 }

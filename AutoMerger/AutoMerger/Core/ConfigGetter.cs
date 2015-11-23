@@ -10,7 +10,7 @@ namespace AutoMerger.Core
 		MergeConfig GetConfig();
 	}
 
-	class ConfigGetter
+	class ConfigGetter : IConfigGetter
 	{
 		private readonly ISvnInterface _svnInterface;
 		private readonly IConfigurationManager _configManager;

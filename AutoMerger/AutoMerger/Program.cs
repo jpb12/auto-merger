@@ -1,4 +1,7 @@
 ﻿using AutoMerger.Core;
+using AutoMerger.Ninject;
+using Ninject;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace AutoMerger
@@ -7,20 +10,21 @@ namespace AutoMerger
 	{
 		static void Main(string[] args)
 		{
-			// TODO: Ninject
-			var configManager = new ConfigurationManager();
-			var svnInterface = new SvnInterface(configManager);
-			var configGetter = new ConfigGetter(svnInterface, configManager);
-			var merger = new Merger(svnInterface, configManager);
-			var threadManager = new ThreadManager(configManager);
-			var projectMerger = new ProjectMerger(merger, threadManager);
+			var kernel = new StandardKernel(new CoreModule());
+
+			var projectMerger = kernel.Get<IProjectMerger>();
+			var configGetter = kernel.Get<IConfigGetter>();
 
 			var config = configGetter.GetConfig();
 
+			var tasks = new List<Task>();
+
 			foreach(var project in config.Projects)
 			{
-				Task.Factory.StartNew(() => projectMerger.MergeProject(project));
+				tasks.Add(Task.Factory.StartNew(() => projectMerger.MergeProject(project)));
 			}
+
+			tasks.ForEach(t => t.Wait());
 		}
 	}
 }
