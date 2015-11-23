@@ -12,6 +12,7 @@ namespace AutoMerger.Core
 		bool CheckForConflicts(string folderPath);
 		bool CheckForModifications(string folderPath);
 		bool Commit(string folderPath, string message);
+		SvnRevisionRange GetMergeInfo(string folderPath, string parent);
 		bool Merge(string projectUrl, string parentBranch, string folderPath);
 		bool Update(string folderPath);
 	}
@@ -117,6 +118,30 @@ namespace AutoMerger.Core
 			}
 		}
 
+		public SvnRevisionRange GetMergeInfo(string folderPath, string parent)
+		{
+			string value;
+
+			using (var svnClient = CreateSvnClient())
+			{
+				svnClient.GetProperty(
+					folderPath,
+					"svn:mergeinfo",
+					out value);
+			}
+
+			var branchPath = "/" + GetBranchPath(parent) + ":";
+			var branchRow = value.Split('\n').SingleOrDefault(r => r.StartsWith(branchPath));
+
+			if (branchRow == null)
+			{
+				return null;
+			}
+
+			var rangeSplit = branchRow.Replace(branchPath, "").Split('-');
+			return new SvnRevisionRange(long.Parse(rangeSplit[0]), long.Parse(rangeSplit[1]));
+		}
+
 		public bool Merge(string projectUrl, string parentBranch, string folderPath)
 		{
 			var svnPath = GetSvnPath(projectUrl, parentBranch);
@@ -149,12 +174,17 @@ namespace AutoMerger.Core
 
 		private SvnUriTarget GetSvnPath(string projectUrl, string branch)
 		{
+			return new SvnUriTarget(UriCombine(projectUrl, GetBranchPath(branch)));
+		}
+
+		private string GetBranchPath(string branch)
+		{
 			if (branch == "trunk")
 			{
-				return new SvnUriTarget(UriCombine(projectUrl, branch));
+				return branch;
 			}
 
-			return new SvnUriTarget(UriCombine(projectUrl, "branches", branch));
+			return "branches/" + branch;
 		}
 
 		private SvnClient CreateSvnClient()

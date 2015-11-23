@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SharpSvn;
+using System;
 using System.IO;
 
 namespace AutoMerger.Core
@@ -56,9 +57,16 @@ namespace AutoMerger.Core
 
 		private void PerformMerge(string projectUrl, string parent, string child, string folderPath)
 		{
+			var initialRange = _svnInterface.GetMergeInfo(folderPath, parent);
+
 			if (!_svnInterface.Merge(projectUrl, parent, folderPath))
 			{
 				throw new InvalidOperationException("Unable to merge into working copy.");
+			}
+
+			if (!_svnInterface.CheckForModifications(folderPath))
+			{
+				return;
 			}
 
 			if (_svnInterface.CheckForConflicts(folderPath))
@@ -66,16 +74,34 @@ namespace AutoMerger.Core
 				throw new InvalidOperationException("Working copy contained conflicts after merge.");
 			}
 
-			if (!_svnInterface.Commit(folderPath, GetCommitMessage(parent, child)))
+			var newRange = _svnInterface.GetMergeInfo(folderPath, parent);
+			var commitMessage = GetCommitMessage(parent, child, initialRange, newRange);
+
+			if (!_svnInterface.Commit(folderPath, commitMessage))
 			{
 				throw new InvalidOperationException("Unable to commit changes from working copy.");
 			}
 		}
 
-		private string GetCommitMessage(string parent, string child)
+		private string GetCommitMessage(string parent, string child, SvnRevisionRange initialRange, SvnRevisionRange newRange)
 		{
+			SvnRevisionRange revisonsMerged;
+
+			if (initialRange != null)
+			{
+				revisonsMerged = new SvnRevisionRange(
+					initialRange.EndRevision.Revision + 1,
+					newRange.EndRevision);
+			}
+			else
+			{
+				revisonsMerged = newRange;
+			}
+
 			return string.Format(
-				"Merging revisions from {0} to {1}",
+				"Merging revisions r{0}-r{1} from {2} to {3}",
+				revisonsMerged.StartRevision.Revision,
+				revisonsMerged.EndRevision.Revision,
 				parent,
 				child);
 		}
