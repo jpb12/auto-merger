@@ -57,7 +57,7 @@ namespace AutoMerger.Core
 		private void GenerateForMerge(StringBuilder stringBuilder, MergeResult result)
 		{
 			stringBuilder.AppendFormat(
-				"\t{0} to {1}: {2}{3}",
+				"\t\t{0} to {1}: {2}{3}",
 				result.Parent,
 				result.Child,
 				result.Message,
