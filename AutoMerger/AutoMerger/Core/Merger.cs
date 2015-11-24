@@ -110,6 +110,11 @@ namespace AutoMerger.Core
 
 		private string GetSuccessMessage(SvnRevisionRange mergedRevisions)
 		{
+			if (mergedRevisions.StartRevision.Revision == mergedRevisions.EndRevision.Revision)
+			{
+				return "Merged revision r" + mergedRevisions.StartRevision.Revision;
+			}
+
 			return string.Format(
 				"Merged revisions r{0}-r{1}",
 				mergedRevisions.StartRevision.Revision,
