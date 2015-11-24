@@ -151,10 +151,14 @@ namespace AutoMerger.Core
 				Force = true
 			};
 
-			var range = new SvnRevisionRange(new SvnRevision(1), new SvnRevision(DateTime.Now));
-
 			using (var svnClient = CreateSvnClient())
 			{
+				SvnInfoEventArgs info;
+
+				svnClient.GetInfo(svnPath, out info);
+
+				var range = new SvnRevisionRange(new SvnRevision(1), new SvnRevision(info.LastChangeRevision));
+
 				return svnClient.Merge(folderPath, svnPath, range, args);
 			}
 		}
