@@ -62,7 +62,10 @@
     <Compile Include="Core\ConfigGetter.cs" />
     <Compile Include="Core\ConfigurationManager.cs" />
     <Compile Include="Core\Merger.cs" />
+    <Compile Include="Core\ReportGenerator.cs" />
+    <Compile Include="Results\MergeResult.cs" />
     <Compile Include="Core\ProjectMerger.cs" />
+    <Compile Include="Results\ProjectMergeResult.cs" />
     <Compile Include="Core\SvnInterface.cs" />
     <Compile Include="Core\ThreadManager.cs" />
     <Compile Include="Ninject\CoreModule.cs" />

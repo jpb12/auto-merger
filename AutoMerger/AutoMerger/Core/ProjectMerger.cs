@@ -1,4 +1,5 @@
-﻿using BranchManager.Core.Types;
+﻿using AutoMerger.Results;
+using BranchManager.Core.Types;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace AutoMerger.Core
 {
 	interface IProjectMerger
 	{
-		void MergeProject(Project project);
+		ProjectMergeResult MergeProject(Project project);
 	}
 
 	class ProjectMerger : IProjectMerger
@@ -23,41 +24,41 @@ namespace AutoMerger.Core
 			_threadManager = threadManager;
 		}
 
-		public void MergeProject(Project project)
+		public ProjectMergeResult MergeProject(Project project)
 		{
 			var enabledMerges = project.Merges.Where(m => m.Enabled).ToList().AsReadOnly();
 
 			var rootMerges = enabledMerges.Where(m1 => enabledMerges.All(m2 => m1.Parent != m2.Child));
 
-			var tasks = new List<Task>();
+			var tasks = new List<Task<IEnumerable<MergeResult>>>();
 
 			foreach (var merge in rootMerges)
 			{
-				tasks.Add(Task.Factory.StartNew(() => HandleMerge(project.ProjectUrl, merge, enabledMerges)));
+				tasks.Add(Task<IEnumerable<MergeResult>>.Factory.StartNew(() => HandleMerge(project.ProjectUrl, merge, enabledMerges)));
 			}
 
-			tasks.ForEach(t => t.Wait());
+			return new ProjectMergeResult(project.ProjectUrl, tasks.SelectMany(t => t.Result).OrderBy(r => r.Parent).ThenBy(r => r.Child));
 		}
 
-		private void HandleMerge(string projectUrl, Merge merge, ReadOnlyCollection<Merge> merges)
+		private IEnumerable<MergeResult> HandleMerge(string projectUrl, Merge merge, ReadOnlyCollection<Merge> merges)
 		{
 			while (!_threadManager.TryStartThread())
 			{
 				Thread.Sleep(1000);
 			}
 
-			_merger.Merge(projectUrl, merge.Parent, merge.Child);
+			var result = _merger.Merge(projectUrl, merge.Parent, merge.Child);
 
 			var childMerges = merges.Where(m => merge.Child == m.Parent);
 
-			var tasks = new List<Task>();
+			var tasks = new List<Task<IEnumerable<MergeResult>>>();
 
 			foreach (var childMerge in childMerges)
 			{
-				tasks.Add(Task.Factory.StartNew(() => HandleMerge(projectUrl, childMerge, merges)));
+				tasks.Add(Task<IEnumerable<MergeResult>>.Factory.StartNew(() => HandleMerge(projectUrl, childMerge, merges)));
 			}
 
-			tasks.ForEach(t => t.Wait());
+			return new List<MergeResult> { result }.Concat(tasks.SelectMany(t => t.Result));
 		}
 	}
 }
