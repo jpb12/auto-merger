@@ -5,10 +5,17 @@ namespace AutoMerger.Ninject
 {
 	class CoreModule : NinjectModule
 	{
+		private readonly string[] _args;
+
+		public CoreModule(string[] args)
+		{
+			_args = args;
+		}
+
 		public override void Load()
 		{
 			Bind<IConfigGetter>().To<ConfigGetter>();
-			Bind<IConfigurationManager>().To<ConfigurationManager>();
+			Bind<IConfigurationManager>().ToMethod(c => new ConfigurationManager(_args));
 			Bind<IMerger>().To<Merger>();
 			Bind<IProjectMerger>().To<ProjectMerger>();
 			Bind<IReportGenerator>().To<ReportGenerator>();

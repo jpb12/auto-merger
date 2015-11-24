@@ -13,7 +13,7 @@ namespace AutoMerger
 	{
 		static void Main(string[] args)
 		{
-			var kernel = new StandardKernel(new CoreModule());
+			var kernel = new StandardKernel(new CoreModule(args));
 
 			var projectMerger = kernel.Get<IProjectMerger>();
 			var configGetter = kernel.Get<IConfigGetter>();
