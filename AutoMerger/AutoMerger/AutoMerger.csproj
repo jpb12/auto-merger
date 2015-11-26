@@ -72,17 +72,18 @@
     <Compile Include="Ninject\CoreModule.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Types\Email.cs" />
-    <Compile Include="Types\EmailSettings.cs" />
-    <Compile Include="Types\Merge.cs" />
-    <Compile Include="Types\MergeConfig.cs" />
-    <Compile Include="Types\Project.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AutoMerger.Types\AutoMerger.Types.csproj">
+      <Project>{103fe496-b139-4b89-9144-b327320b7318}</Project>
+      <Name>AutoMerger.Types</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

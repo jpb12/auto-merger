@@ -174,16 +174,16 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BranchManager.Core\BranchManager.Core.csproj">
-      <Project>{75fb5661-b1d1-4e0f-8b8a-df823e019fdb}</Project>
-      <Name>BranchManager.Core</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="JS\Components.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\AutoMerger\AutoMerger.Types\AutoMerger.Types.csproj">
+      <Project>{103fe496-b139-4b89-9144-b327320b7318}</Project>
+      <Name>AutoMerger.Types</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

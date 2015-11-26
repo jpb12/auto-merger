@@ -1,6 +1,6 @@
 /AutoMerger/AutoMerger/*.user
-/AutoMerger/AutoMerger/bin
-/AutoMerger/AutoMerger/obj
+/AutoMerger/*/bin
+/AutoMerger/*/obj
 /AutoMerger/packages
 /AutoMerger/.vs
 /BranchManager/BranchManager/*.user

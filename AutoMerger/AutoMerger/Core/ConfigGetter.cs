@@ -1,5 +1,4 @@
-﻿using BranchManager.Core.Types;
-using System.IO;
+﻿using AutoMerger.Types;
 using System.Xml;
 using System.Xml.Serialization;
 

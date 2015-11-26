@@ -1,6 +1,6 @@
 ﻿using System.Xml.Serialization;
 
-namespace BranchManager.Core.Types
+namespace AutoMerger.Types
 {
 	public class Email
 	{
