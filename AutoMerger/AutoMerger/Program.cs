@@ -38,7 +38,7 @@ namespace AutoMerger
 
 			Console.Write(report);
 
-			emailSender.SendSummaryEmail(report, config.EmailSettings);
+			emailSender.SendSummaryEmail(report);
 		}
 	}
 }

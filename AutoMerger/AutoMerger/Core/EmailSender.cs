@@ -7,21 +7,23 @@ namespace AutoMerger.Core
 {
 	interface IEmailSender
 	{
-		void SendSummaryEmail(string summary, EmailSettings settings);
+		void SendSummaryEmail(string summary);
 	}
 
 	class EmailSender : IEmailSender
 	{
 		private readonly bool _sendEmails;
+		private readonly EmailSettings _settings;
 
-		public EmailSender(IConfigurationManager configManager)
+		public EmailSender(IConfigurationManager configManager, IConfigGetter configGetter)
 		{
 			_sendEmails = configManager.GetBoolValue(ConfigKey.SendEmails);
+			_settings = configGetter.GetConfig().EmailSettings;
 		}
 
-		public void SendSummaryEmail(string summary, EmailSettings settings)
+		public void SendSummaryEmail(string summary)
 		{
-			if (!_sendEmails || settings == null)
+			if (!_sendEmails || _settings == null)
 			{
 				return;
 			}
@@ -29,11 +31,11 @@ namespace AutoMerger.Core
 			using (var client = new SmtpClient())
 			using (var message = new MailMessage())
 			{
-				message.From = new MailAddress(settings.FromAddress.Value);
+				message.From = new MailAddress(_settings.FromAddress.Value);
 
-				AddEmailsToCollection(message.To, settings.ToAddresses);
-				AddEmailsToCollection(message.CC, settings.CcAddresses);
-				AddEmailsToCollection(message.Bcc, settings.BccAddresses);
+				AddEmailsToCollection(message.To, _settings.ToAddresses);
+				AddEmailsToCollection(message.CC, _settings.CcAddresses);
+				AddEmailsToCollection(message.Bcc, _settings.BccAddresses);
 
 				message.Subject = "AutoMerge Summary - " + DateTime.Now.ToString("yyyy-MM-dd HH:mm");
 				message.Body = summary;
