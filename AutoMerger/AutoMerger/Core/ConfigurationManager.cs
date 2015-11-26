@@ -10,6 +10,7 @@ namespace AutoMerger.Core
 		MergeConfig,
 		MergesFolder,
 		Password,
+		SendEmails,
 		Threads,
 		UserName
 	}

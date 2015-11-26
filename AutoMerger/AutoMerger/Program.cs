@@ -18,6 +18,7 @@ namespace AutoMerger
 			var projectMerger = kernel.Get<IProjectMerger>();
 			var configGetter = kernel.Get<IConfigGetter>();
 			var reportGenerator = kernel.Get<IReportGenerator>();
+			var emailSender = kernel.Get<IEmailSender>();
 
 			var config = configGetter.GetConfig();
 
@@ -36,6 +37,8 @@ namespace AutoMerger
 			var report = reportGenerator.Generate(results);
 
 			Console.Write(report);
+
+			emailSender.SendSummaryEmail(report, config.EmailSettings);
 		}
 	}
 }

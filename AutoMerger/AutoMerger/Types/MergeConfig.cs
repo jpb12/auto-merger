@@ -7,5 +7,8 @@ namespace BranchManager.Core.Types
 	{
 		[XmlElement("Project")]
 		public List<Project> Projects { get; set; }
+
+		[XmlElement("EmailSettings")]
+		public EmailSettings EmailSettings { get; set; }
 	}
 }

@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="Core\ConfigGetter.cs" />
     <Compile Include="Core\ConfigurationManager.cs" />
+    <Compile Include="Core\EmailSender.cs" />
     <Compile Include="Core\Merger.cs" />
     <Compile Include="Core\ReportGenerator.cs" />
     <Compile Include="Results\MergeResult.cs" />
@@ -71,6 +72,8 @@
     <Compile Include="Ninject\CoreModule.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Types\Email.cs" />
+    <Compile Include="Types\EmailSettings.cs" />
     <Compile Include="Types\Merge.cs" />
     <Compile Include="Types\MergeConfig.cs" />
     <Compile Include="Types\Project.cs" />
