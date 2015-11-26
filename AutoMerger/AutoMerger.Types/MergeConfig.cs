@@ -9,6 +9,6 @@ namespace AutoMerger.Types
 		public List<Project> Projects { get; set; }
 
 		[XmlElement("EmailSettings")]
-		public EmailSettings EmailSettings { get; set; }
+		public EmailSettings<SummaryEmail> EmailSettings { get; set; }
 	}
 }

@@ -3,18 +3,18 @@ using System.Xml.Serialization;
 
 namespace AutoMerger.Types
 {
-	public class EmailSettings
+	public class EmailSettings<T> where T : Email
 	{
 		[XmlElement("FromAddress")]
-		public Email FromAddress { get; set; }
+		public T FromAddress { get; set; }
 
 		[XmlElement("ToAddress")]
-		public List<Email> ToAddresses { get; set; }
+		public List<T> ToAddresses { get; set; }
 
 		[XmlElement("CcAddress")]
-		public List<Email> CcAddresses { get; set; }
+		public List<T> CcAddresses { get; set; }
 
 		[XmlElement("BccAddress")]
-		public List<Email> BccAddresses { get; set; }
+		public List<T> BccAddresses { get; set; }
 	}
 }

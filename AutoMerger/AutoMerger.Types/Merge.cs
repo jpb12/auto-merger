@@ -12,5 +12,8 @@ namespace AutoMerger.Types
 
 		[XmlAttribute("Enabled")]
 		public bool Enabled { get; set; }
+
+		[XmlElement("EmailSettings")]
+		public EmailSettings<Email> EmailSettings { get; set; }
 	}
 }

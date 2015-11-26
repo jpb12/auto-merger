@@ -1,5 +1,6 @@
 ﻿using AutoMerger.Results;
 using AutoMerger.Types;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -17,11 +18,13 @@ namespace AutoMerger.Core
 	{
 		private readonly IMerger _merger;
 		private readonly IThreadManager _threadManager;
+		private readonly IEmailSender _emailSender;
 
-		public ProjectMerger(IMerger merger, IThreadManager threadManager)
+		public ProjectMerger(IMerger merger, IThreadManager threadManager, IEmailSender emailSender)
 		{
 			_merger = merger;
 			_threadManager = threadManager;
+			_emailSender = emailSender;
 		}
 
 		public ProjectMergeResult MergeProject(Project project)
@@ -48,6 +51,20 @@ namespace AutoMerger.Core
 			}
 
 			var result = _merger.Merge(projectUrl, merge.Parent, merge.Child);
+
+			try
+			{
+				_emailSender.SendIndividualMergeEmail(merge, result);
+			}
+			catch (Exception e)
+			{
+				result = new MergeResult(
+					merge.Parent,
+					merge.Child,
+					false,
+					string.Format("{0} - {1}", result.Message, e.Message),
+					e);
+			}
 
 			var childMerges = merges.Where(m => merge.Child == m.Parent);
 
