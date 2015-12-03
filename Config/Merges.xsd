@@ -3,7 +3,12 @@
 	<xs:element name="MergeConfig">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element name="Project" type="ProjectType" minOccurs="1" maxOccurs="unbounded"/>
+				<xs:element name="Project" type="ProjectType" minOccurs="1" maxOccurs="unbounded">
+					<xs:unique name="UniqueChildMerge">
+						<xs:selector xpath="Merge"/>
+						<xs:field xpath="@Child"/>
+					</xs:unique>
+				</xs:element>
 				<xs:element name="EmailSettings" minOccurs="0">
 					<xs:complexType>
 						<xs:sequence>
@@ -16,6 +21,10 @@
 				</xs:element>
 			</xs:sequence>
 		</xs:complexType>
+		<xs:unique name="UniqueUrl">
+			<xs:selector xpath="Project"/>
+			<xs:field xpath="@ProjectUrl"/>
+		</xs:unique>
 	</xs:element>
 	<xs:complexType name="ProjectType">
 		<xs:sequence minOccurs="0" maxOccurs="unbounded">
