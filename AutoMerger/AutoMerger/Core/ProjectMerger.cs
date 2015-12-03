@@ -11,7 +11,8 @@ namespace AutoMerger.Core
 {
 	interface IProjectMerger
 	{
-		ProjectMergeResult MergeProject(Project project);
+		ProjectMergeResult MergeProject(string projectUrl, IEnumerable<Merge> merges);
+		MergeResult MergeIndividualMerge(string projectUrl, Merge merge);
 	}
 
 	class ProjectMerger : IProjectMerger
@@ -27,9 +28,9 @@ namespace AutoMerger.Core
 			_emailSender = emailSender;
 		}
 
-		public ProjectMergeResult MergeProject(Project project)
+		public ProjectMergeResult MergeProject(string projectUrl, IEnumerable<Merge> merges)
 		{
-			var enabledMerges = project.Merges.Where(m => m.Enabled).ToList().AsReadOnly();
+			var enabledMerges = merges.Where(m => m.Enabled).ToList().AsReadOnly();
 
 			var rootMerges = enabledMerges.Where(m1 => enabledMerges.All(m2 => m1.Parent != m2.Child));
 
@@ -37,19 +38,14 @@ namespace AutoMerger.Core
 
 			foreach (var merge in rootMerges)
 			{
-				tasks.Add(Task<IEnumerable<MergeResult>>.Factory.StartNew(() => HandleMerge(project.ProjectUrl, merge, enabledMerges)));
+				tasks.Add(Task<IEnumerable<MergeResult>>.Factory.StartNew(() => HandleMerge(projectUrl, merge, enabledMerges)));
 			}
 
-			return new ProjectMergeResult(project.ProjectUrl, tasks.SelectMany(t => t.Result).OrderBy(r => r.Parent).ThenBy(r => r.Child));
+			return new ProjectMergeResult(projectUrl, tasks.SelectMany(t => t.Result).OrderBy(r => r.Parent).ThenBy(r => r.Child));
 		}
 
-		private IEnumerable<MergeResult> HandleMerge(string projectUrl, Merge merge, ReadOnlyCollection<Merge> merges)
+		public MergeResult MergeIndividualMerge(string projectUrl, Merge merge)
 		{
-			while (!_threadManager.TryStartThread())
-			{
-				Thread.Sleep(1000);
-			}
-
 			var result = _merger.Merge(projectUrl, merge.Parent, merge.Child);
 
 			try
@@ -65,6 +61,18 @@ namespace AutoMerger.Core
 					string.Format("{0} - {1}", result.Message, e.Message),
 					e);
 			}
+
+			return result;
+		}
+
+		private IEnumerable<MergeResult> HandleMerge(string projectUrl, Merge merge, ReadOnlyCollection<Merge> merges)
+		{
+			while (!_threadManager.TryStartThread())
+			{
+				Thread.Sleep(1000);
+			}
+
+			var result = MergeIndividualMerge(projectUrl, merge);
 
 			var childMerges = merges.Where(m => merge.Child == m.Parent);
 

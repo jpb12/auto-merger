@@ -6,10 +6,13 @@ namespace AutoMerger.Core
 {
 	enum ConfigKey
 	{
+		Child,
 		ConfigIsInSvn,
 		MergeConfig,
 		MergesFolder,
+		Parent,
 		Password,
+		ProjectUrl,
 		SendEmails,
 		Threads,
 		UserName

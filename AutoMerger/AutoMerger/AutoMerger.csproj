@@ -63,6 +63,7 @@
     <Compile Include="Core\ConfigurationManager.cs" />
     <Compile Include="Core\EmailSender.cs" />
     <Compile Include="Core\Merger.cs" />
+    <Compile Include="Core\MergeRunner.cs" />
     <Compile Include="Core\ReportGenerator.cs" />
     <Compile Include="Results\MergeResult.cs" />
     <Compile Include="Core\ProjectMerger.cs" />

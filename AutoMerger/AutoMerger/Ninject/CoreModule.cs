@@ -18,6 +18,7 @@ namespace AutoMerger.Ninject
 			Bind<IConfigurationManager>().ToMethod(c => new ConfigurationManager(_args));
 			Bind<IEmailSender>().To<EmailSender>();
 			Bind<IMerger>().To<Merger>();
+			Bind<IMergeRunner>().To<MergeRunner>();
 			Bind<IProjectMerger>().To<ProjectMerger>();
 			Bind<IReportGenerator>().To<ReportGenerator>();
 			Bind<ISvnInterface>().To<SvnInterface>();
