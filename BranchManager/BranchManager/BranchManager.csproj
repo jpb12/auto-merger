@@ -180,7 +180,7 @@
     <Content Include="JS\Components.js" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\AutoMerger\AutoMerger.Types\AutoMerger.Types.csproj">
+    <ProjectReference Include="..\..\AutoMerger\AutoMerger.Shared\AutoMerger.Shared.csproj">
       <Project>{103fe496-b139-4b89-9144-b327320b7318}</Project>
       <Name>AutoMerger.Types</Name>
     </ProjectReference>

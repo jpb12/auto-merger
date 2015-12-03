@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Xml.Serialization;
 
-namespace AutoMerger.Types
+namespace AutoMerger.Shared.Types
 {
 	public class EmailSettings<T> where T : Email
 	{

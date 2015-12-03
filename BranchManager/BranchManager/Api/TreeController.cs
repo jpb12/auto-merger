@@ -1,4 +1,4 @@
-﻿using AutoMerger.Types;
+﻿using AutoMerger.Shared.Types;
 using System.Collections.Generic;
 using System.Web.Http;
 

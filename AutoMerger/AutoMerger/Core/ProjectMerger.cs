@@ -1,5 +1,5 @@
 ﻿using AutoMerger.Results;
-using AutoMerger.Types;
+using AutoMerger.Shared.Types;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

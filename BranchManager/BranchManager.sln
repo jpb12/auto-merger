@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BranchManager", "BranchManager\BranchManager.csproj", "{35BBD30A-E175-472C-BD8D-2C7866C3C5B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoMerger.Types", "..\AutoMerger\AutoMerger.Types\AutoMerger.Types.csproj", "{103FE496-B139-4B89-9144-B327320B7318}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoMerger.Shared", "..\AutoMerger\AutoMerger.Shared\AutoMerger.Shared.csproj", "{103FE496-B139-4B89-9144-B327320B7318}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,6 +1,6 @@
 ﻿using System.Xml.Serialization;
 
-namespace AutoMerger.Types
+namespace AutoMerger.Shared.Types
 {
 	public class Email
 	{

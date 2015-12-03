@@ -1,5 +1,6 @@
 ﻿using AutoMerger.Results;
-using AutoMerger.Types;
+using AutoMerger.Shared.Core;
+using AutoMerger.Shared.Types;
 using System;
 using System.Collections.Generic;
 using System.Linq;

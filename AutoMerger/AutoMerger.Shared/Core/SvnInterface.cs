@@ -3,9 +3,9 @@ using System;
 using System.IO;
 using System.Linq;
 
-namespace AutoMerger.Core
+namespace AutoMerger.Shared.Core
 {
-	interface ISvnInterface
+	public interface ISvnInterface
 	{
 		Stream Cat(string path);
 		bool Checkout(string projectUrl, string branch, string folderPath);

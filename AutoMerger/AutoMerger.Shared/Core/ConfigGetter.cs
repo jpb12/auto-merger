@@ -1,10 +1,10 @@
-﻿using AutoMerger.Types;
+﻿using AutoMerger.Shared.Types;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace AutoMerger.Core
+namespace AutoMerger.Shared.Core
 {
-	interface IConfigGetter
+	public interface IConfigGetter
 	{
 		MergeConfig GetConfig();
 	}

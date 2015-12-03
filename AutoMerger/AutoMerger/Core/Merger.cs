@@ -1,4 +1,5 @@
 ﻿using AutoMerger.Results;
+using AutoMerger.Shared.Core;
 using SharpSvn;
 using System;
 using System.IO;

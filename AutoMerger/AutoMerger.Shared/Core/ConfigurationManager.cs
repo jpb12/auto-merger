@@ -2,9 +2,9 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace AutoMerger.Core
+namespace AutoMerger.Shared.Core
 {
-	enum ConfigKey
+	public enum ConfigKey
 	{
 		Child,
 		ConfigIsInSvn,
@@ -26,7 +26,7 @@ namespace AutoMerger.Core
 		}
 	}
 
-	interface IConfigurationManager
+	public interface IConfigurationManager
 	{
 		bool GetBoolValue(ConfigKey configKey);
 		int GetIntValue(ConfigKey configKey);

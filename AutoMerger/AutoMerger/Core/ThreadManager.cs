@@ -1,4 +1,6 @@
-﻿namespace AutoMerger.Core
+﻿using AutoMerger.Shared.Core;
+
+namespace AutoMerger.Core
 {
 	interface IThreadManager
 	{
