@@ -29,10 +29,8 @@ namespace AutoMerger.Core
 			if (_configManager.GetBoolValue(ConfigKey.ConfigIsInSvn))
 			{
 				var stream = _svnInterface.Cat(configLocation);
-				using (var reader = new XmlTextReader(stream))
-				{
-					return (MergeConfig)xmlSerializer.Deserialize(reader);
-				}
+				stream.Position = 0;
+				return (MergeConfig)xmlSerializer.Deserialize(stream);
 			}
 
 			using (var reader = new XmlTextReader(configLocation))
