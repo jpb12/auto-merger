@@ -1,5 +1,6 @@
 ﻿using AutoMerger.Results;
 using AutoMerger.Shared.Core;
+using AutoMerger.Types;
 using SharpSvn;
 using System;
 using System.IO;
@@ -16,7 +17,7 @@ namespace AutoMerger.Core
 		private readonly ISvnInterface _svnInterface;
 		private readonly string _mergesFolder;
 
-		public Merger(ISvnInterface svnInterface, IConfigurationManager configManager)
+		public Merger(ISvnInterface svnInterface, IConfigurationManager<ConfigKey> configManager)
 		{
 			_svnInterface = svnInterface;
 			_mergesFolder = configManager.GetStringValue(ConfigKey.MergesFolder);

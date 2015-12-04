@@ -9,7 +9,7 @@ namespace AutoMerger
 	{
 		static void Main(string[] args)
 		{
-			var kernel = new StandardKernel(new CoreModule(), new SharedModule(args));
+			var kernel = new StandardKernel(new CoreModule(args), new SharedModule(args));
 
 			var mergeRunner = kernel.Get<IMergeRunner>();
 			mergeRunner.Run();

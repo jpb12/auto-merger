@@ -1,6 +1,7 @@
 ﻿using AutoMerger.Results;
 using AutoMerger.Shared.Core;
 using AutoMerger.Shared.Types;
+using AutoMerger.Types;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace AutoMerger.Core
 		private readonly bool _sendEmails;
 		private readonly EmailSettings<SummaryEmail> _settings;
 
-		public EmailSender(IConfigurationManager configManager, IConfigGetter configGetter)
+		public EmailSender(IConfigurationManager<ConfigKey> configManager, IConfigGetter configGetter)
 		{
 			_sendEmails = configManager.GetBoolValue(ConfigKey.SendEmails);
 			_settings = configGetter.GetConfig().EmailSettings;

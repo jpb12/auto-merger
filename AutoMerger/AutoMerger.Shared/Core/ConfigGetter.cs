@@ -12,9 +12,9 @@ namespace AutoMerger.Shared.Core
 	class ConfigGetter : IConfigGetter
 	{
 		private readonly ISvnInterface _svnInterface;
-		private readonly IConfigurationManager _configManager;
+		private readonly IConfigurationManager<ConfigKey> _configManager;
 
-		public ConfigGetter(ISvnInterface svnInterface, IConfigurationManager configManager)
+		public ConfigGetter(ISvnInterface svnInterface, IConfigurationManager<ConfigKey> configManager)
 		{
 			_svnInterface = svnInterface;
 			_configManager = configManager;

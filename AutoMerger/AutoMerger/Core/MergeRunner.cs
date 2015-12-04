@@ -1,6 +1,7 @@
 ﻿using AutoMerger.Results;
 using AutoMerger.Shared.Core;
 using AutoMerger.Shared.Types;
+using AutoMerger.Types;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,14 +18,14 @@ namespace AutoMerger.Core
 	{
 		private readonly IProjectMerger _projectMerger;
 		private readonly IConfigGetter _configGetter;
-		private readonly IConfigurationManager _configManager;
+		private readonly IConfigurationManager<ConfigKey> _configManager;
 		private readonly IReportGenerator _reportGenerator;
 		private readonly IEmailSender _emailSender;
 
 		public MergeRunner(
 			IProjectMerger projectMerger,
 			IConfigGetter configGetter,
-			IConfigurationManager configManager,
+			IConfigurationManager<ConfigKey> configManager,
 			IReportGenerator reportGenerator,
 			IEmailSender emailSender)
 		{

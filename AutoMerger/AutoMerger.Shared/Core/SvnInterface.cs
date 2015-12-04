@@ -22,7 +22,7 @@ namespace AutoMerger.Shared.Core
 		private readonly string _userName;
 		private readonly string _password;
 
-		public SvnInterface(IConfigurationManager configManager)
+		public SvnInterface(IConfigurationManager<ConfigKey> configManager)
 		{
 			_userName = configManager.GetStringValue(ConfigKey.UserName);
 			_password = configManager.GetStringValue(ConfigKey.Password);

@@ -4,36 +4,22 @@ using System.Text.RegularExpressions;
 
 namespace AutoMerger.Shared.Core
 {
-	public enum ConfigKey
+	enum ConfigKey
 	{
-		Child,
 		ConfigIsInSvn,
 		MergeConfig,
-		MergesFolder,
-		Parent,
 		Password,
-		ProjectUrl,
-		SendEmails,
-		Threads,
 		UserName
 	}
 
-	static class ConfigKeyExtensions
+	public interface IConfigurationManager<T> where T : struct, IConvertible
 	{
-		public static string ToKebabCase(this ConfigKey key)
-		{
-			return Regex.Replace(key.ToString(), "[a-z][A-Z]", m => m.Value[0] + "-" + m.Value[1]).ToLowerInvariant();
-		}
+		bool GetBoolValue(T configKey);
+		int GetIntValue(T configKey);
+		string GetStringValue(T configKey);
 	}
 
-	public interface IConfigurationManager
-	{
-		bool GetBoolValue(ConfigKey configKey);
-		int GetIntValue(ConfigKey configKey);
-		string GetStringValue(ConfigKey configKey);
-	}
-
-	class ConfigurationManager : IConfigurationManager
+	public class ConfigurationManager<T> : IConfigurationManager<T> where T : struct, IConvertible
 	{
 		private readonly string[] _args;
 
@@ -42,7 +28,7 @@ namespace AutoMerger.Shared.Core
 			_args = args;
 		}
 
-		public bool GetBoolValue(ConfigKey configKey)
+		public bool GetBoolValue(T configKey)
 		{
 			bool value;
 
@@ -54,7 +40,7 @@ namespace AutoMerger.Shared.Core
 			return value;
 		}
 
-		public int GetIntValue(ConfigKey configKey)
+		public int GetIntValue(T configKey)
 		{
 			int value;
 
@@ -66,7 +52,7 @@ namespace AutoMerger.Shared.Core
 			return value;
 		}
 
-		public string GetStringValue(ConfigKey configKey)
+		public string GetStringValue(T configKey)
 		{
 			string value;
 
@@ -78,9 +64,9 @@ namespace AutoMerger.Shared.Core
 			return System.Configuration.ConfigurationManager.AppSettings[configKey.ToString()];
 		}
 
-		private bool TryGetFromArguments(ConfigKey configKey, out string value)
+		private bool TryGetFromArguments(T configKey, out string value)
 		{
-			var argKey = "--" + configKey.ToKebabCase() + "=";
+			var argKey = "--" + ToKebabCase(configKey) + "=";
 
 			var arg = _args.SingleOrDefault(a => a.StartsWith(argKey));
 
@@ -92,6 +78,11 @@ namespace AutoMerger.Shared.Core
 
 			value =  arg.Replace(argKey, "");
 			return true;
+		}
+
+		private string ToKebabCase(IConvertible key)
+		{
+			return Regex.Replace(key.ToString(), "[a-z][A-Z]", m => m.Value[0] + "-" + m.Value[1]).ToLowerInvariant();
 		}
 	}
 }

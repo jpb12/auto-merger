@@ -1,4 +1,5 @@
 ﻿using AutoMerger.Shared.Core;
+using AutoMerger.Types;
 
 namespace AutoMerger.Core
 {
@@ -15,7 +16,7 @@ namespace AutoMerger.Core
 
 		private int _runningThreads;
 
-		public ThreadManager(IConfigurationManager configManager)
+		public ThreadManager(IConfigurationManager<ConfigKey> configManager)
 		{
 			var threads = configManager.GetIntValue(ConfigKey.Threads);
 			_maxThreads = threads > 0 ? threads : (int?)null;

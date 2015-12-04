@@ -15,7 +15,7 @@ namespace AutoMerger.Shared.Ninject
 		public override void Load()
 		{
 			Bind<IConfigGetter>().To<ConfigGetter>();
-			Bind<IConfigurationManager>().ToMethod(c => new ConfigurationManager(_args));
+			Bind<IConfigurationManager<ConfigKey>>().ToMethod(c => new ConfigurationManager<ConfigKey>(_args));
 			Bind<ISvnInterface>().To<SvnInterface>();
 		}
 	}
