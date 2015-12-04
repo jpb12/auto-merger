@@ -1,11 +1,11 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("AutoMerger.Types")]
+[assembly: AssemblyTitle("AutoMerger.Shared")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("AutoMerger.Types")]
+[assembly: AssemblyProduct("AutoMerger.Shared")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

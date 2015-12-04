@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="MergeConfig">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Project" type="ProjectType" minOccurs="1" maxOccurs="unbounded">
+					<xs:unique name="UniqueChildMerge">
+						<xs:selector xpath="Merge"/>
+						<xs:field xpath="@Child"/>
+					</xs:unique>
+				</xs:element>
+				<xs:element name="EmailSettings" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="FromAddress" type="SummaryEmailType"/>
+							<xs:element name="ToAddress" type="SummaryEmailType" minOccurs="0" maxOccurs="unbounded"/>
+							<xs:element name="CcAddress" type="SummaryEmailType" minOccurs="0" maxOccurs="unbounded"/>
+							<xs:element name="BccAddress" type="SummaryEmailType" minOccurs="0" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+		<xs:unique name="UniqueUrl">
+			<xs:selector xpath="Project"/>
+			<xs:field xpath="@ProjectUrl"/>
+		</xs:unique>
+	</xs:element>
+	<xs:complexType name="ProjectType">
+		<xs:sequence minOccurs="0" maxOccurs="unbounded">
+			<xs:element name="Merge" type="MergeType"/>
+		</xs:sequence>
+		<xs:attribute name="ProjectUrl" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="MergeType">
+		<xs:sequence>
+			<xs:element name="EmailSettings" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="FromAddress" type="EmailType" minOccurs="0"/>
+						<xs:element name="ToAddress" type="EmailType" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="CcAddress" type="EmailType" minOccurs="0" maxOccurs="unbounded"/>
+						<xs:element name="BccAddress" type="EmailType" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="Parent" type="xs:string" use="required"/>
+		<xs:attribute name="Child" type="xs:string" use="required"/>
+		<xs:attribute name="Enabled" type="xs:boolean" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="EmailType">
+		<xs:attribute name="Email" type="xs:string" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="SummaryEmailType">
+		<xs:complexContent>
+			<xs:extension base="EmailType">
+				<xs:attribute name="InheritInMergeEmails" type="xs:boolean"/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

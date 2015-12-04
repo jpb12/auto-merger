@@ -1,10 +1,5 @@
-/AutoMerger/AutoMerger/*.user
-/AutoMerger/*/bin
-/AutoMerger/*/obj
-/AutoMerger/packages
-/AutoMerger/.vs
-/BranchManager/BranchManager/*.user
-/BranchManager/*/bin
-/BranchManager/*/obj
-/BranchManager/packages
-/BranchManager/.vs
+/*/*/*.user
+/*/*/bin
+/*/*/obj
+/*/packages
+/*/.vs
