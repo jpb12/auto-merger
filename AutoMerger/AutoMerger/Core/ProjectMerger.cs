@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace AutoMerger.Core
 {
@@ -34,14 +33,14 @@ namespace AutoMerger.Core
 
 			var rootMerges = enabledMerges.Where(m1 => enabledMerges.All(m2 => m1.Parent != m2.Child));
 
-			var tasks = new List<Task<IEnumerable<MergeResult>>>();
+			var results = rootMerges
+				.AsParallel()
+				.Select(m => HandleMerge(projectUrl, m, enabledMerges))
+				.SelectMany(t => t)
+				.OrderBy(r => r.Parent)
+				.ThenBy(r => r.Child);
 
-			foreach (var merge in rootMerges)
-			{
-				tasks.Add(Task<IEnumerable<MergeResult>>.Factory.StartNew(() => HandleMerge(projectUrl, merge, enabledMerges)));
-			}
-
-			return new ProjectMergeResult(projectUrl, tasks.SelectMany(t => t.Result).OrderBy(r => r.Parent).ThenBy(r => r.Child));
+			return new ProjectMergeResult(projectUrl, results);
 		}
 
 		public MergeResult MergeIndividualMerge(string projectUrl, Merge merge)
@@ -76,14 +75,12 @@ namespace AutoMerger.Core
 
 			var childMerges = merges.Where(m => merge.Child == m.Parent);
 
-			var tasks = new List<Task<IEnumerable<MergeResult>>>();
+			var results = childMerges
+				.AsParallel()
+				.Select(m => HandleMerge(projectUrl, m, merges))
+				.SelectMany(t => t);
 
-			foreach (var childMerge in childMerges)
-			{
-				tasks.Add(Task<IEnumerable<MergeResult>>.Factory.StartNew(() => HandleMerge(projectUrl, childMerge, merges)));
-			}
-
-			return new List<MergeResult> { result }.Concat(tasks.SelectMany(t => t.Result));
+			return new List<MergeResult> { result }.Concat(results);
 		}
 	}
 }

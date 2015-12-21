@@ -68,16 +68,10 @@ namespace AutoMerger.Core
 
 		private IEnumerable<ProjectMergeResult> RunAllMerges(MergeConfig config)
 		{
-			var tasks = new List<Task<ProjectMergeResult>>();
-
-			foreach (var project in config.Projects)
-			{
-				tasks.Add(Task<ProjectMergeResult>.Factory.StartNew(
-					() => _projectMerger.MergeProject(project.ProjectUrl, project.Merges)));
-			}
-
-			return tasks
-				.Select(t => t.Result)
+			return config
+				.Projects
+				.AsParallel()
+				.Select(p => _projectMerger.MergeProject(p.ProjectUrl, p.Merges))
 				.OrderBy(r => r.ProjectUrl);
 		}
 
