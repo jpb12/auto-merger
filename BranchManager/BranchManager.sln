@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BranchManager", "BranchManager\BranchManager.csproj", "{35BBD30A-E175-472C-BD8D-2C7866C3C5B6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoMerger.Shared", "..\AutoMerger\AutoMerger.Shared\AutoMerger.Shared.csproj", "{103FE496-B139-4B89-9144-B327320B7318}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BranchManager.Core", "BranchManager.Core\BranchManager.Core.csproj", "{CD53082D-4D0E-406A-9D6B-A7892EC4DECC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{103FE496-B139-4B89-9144-B327320B7318}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{103FE496-B139-4B89-9144-B327320B7318}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{103FE496-B139-4B89-9144-B327320B7318}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD53082D-4D0E-406A-9D6B-A7892EC4DECC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD53082D-4D0E-406A-9D6B-A7892EC4DECC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD53082D-4D0E-406A-9D6B-A7892EC4DECC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD53082D-4D0E-406A-9D6B-A7892EC4DECC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

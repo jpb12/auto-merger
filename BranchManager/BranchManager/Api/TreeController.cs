@@ -1,4 +1,4 @@
-﻿using AutoMerger.Shared.Types;
+﻿using BranchManager.Core.Tree;
 using System.Collections.Generic;
 using System.Web.Http;
 
@@ -7,40 +7,17 @@ namespace BranchManager.Api
 	[RoutePrefix("api/tree")]
 	public class TreeController : ApiController
 	{
-		[Route("")]
-		public MergeConfig Get()
+		private readonly IMergeTreeGetter _mergeTreeGetter;
+
+		public TreeController(IMergeTreeGetter mergeTreeGetter)
 		{
-			return new MergeConfig
-			{
-				Projects = new List<Project>
-				{
-					new Project
-					{
-						ProjectUrl = "http://temp/one",
-						Merges = new List<Merge>
-						{
-							new Merge
-							{
-								Child = "trunk",
-								Parent = "1.0",
-								Enabled = true
-							},
-							new Merge
-							{
-								Child = "child-one",
-								Parent = "trunk",
-								Enabled = true
-							},
-							new Merge
-							{
-								Child = "child-two",
-								Parent = "trunk",
-								Enabled = true
-							}
-						}
-					}
-				}
-			};
+			_mergeTreeGetter = mergeTreeGetter;
+		}
+
+		[Route("")]
+		public IEnumerable<Project> Get()
+		{
+			return _mergeTreeGetter.GetTree();
 		}
 	}
 }
