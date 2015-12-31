@@ -1,5 +1,4 @@
 ﻿using SharpSvn;
-using System;
 using System.IO;
 using System.Linq;
 
@@ -17,16 +16,9 @@ namespace AutoMerger.Shared.Core
 		bool Update(string folderPath);
 	}
 
-	class SvnInterface : ISvnInterface
+	public abstract class BaseSvnInterface : ISvnInterface
 	{
-		private readonly string _userName;
-		private readonly string _password;
-
-		public SvnInterface(IConfigurationManager<ConfigKey> configManager)
-		{
-			_userName = configManager.GetStringValue(ConfigKey.UserName);
-			_password = configManager.GetStringValue(ConfigKey.Password);
-		}
+		public abstract SvnClient CreateSvnClient();
 
 		public Stream Cat(string path)
 		{
@@ -189,18 +181,6 @@ namespace AutoMerger.Shared.Core
 			}
 
 			return "branches/" + branch;
-		}
-
-		private SvnClient CreateSvnClient()
-		{
-			var client = new SvnClient();
-
-			if (!string.IsNullOrEmpty(_userName) && !string.IsNullOrEmpty(_password))
-			{
-				client.Authentication.ForceCredentials(_userName, _password);
-			}
-
-			return client;
 		}
 
 		private string UriCombine(params string[] uriStrings)

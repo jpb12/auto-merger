@@ -22,6 +22,7 @@ namespace AutoMerger.Ninject
 			Bind<IMergeRunner>().To<MergeRunner>();
 			Bind<IProjectMerger>().To<ProjectMerger>();
 			Bind<IReportGenerator>().To<ReportGenerator>();
+			Bind<ISvnInterface>().To<SvnInterface>();
 			Bind<IThreadManager>().To<ThreadManager>();
 		}
 	}

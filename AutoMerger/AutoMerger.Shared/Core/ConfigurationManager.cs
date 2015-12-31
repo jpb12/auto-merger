@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 namespace AutoMerger.Shared.Core
 {
-	enum ConfigKey
+	public enum SharedConfigKey
 	{
 		ConfigIsInSvn,
 		MergeConfig,

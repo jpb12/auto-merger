@@ -16,9 +16,9 @@ namespace AutoMerger.Shared.Core
 	class ConfigGetter : IConfigGetter
 	{
 		private readonly ISvnInterface _svnInterface;
-		private readonly IConfigurationManager<ConfigKey> _configManager;
+		private readonly IConfigurationManager<SharedConfigKey> _configManager;
 
-		public ConfigGetter(ISvnInterface svnInterface, IConfigurationManager<ConfigKey> configManager)
+		public ConfigGetter(ISvnInterface svnInterface, IConfigurationManager<SharedConfigKey> configManager)
 		{
 			_svnInterface = svnInterface;
 			_configManager = configManager;
@@ -38,9 +38,9 @@ namespace AutoMerger.Shared.Core
 
 		private XDocument GetXml()
 		{
-			var configLocation = _configManager.GetStringValue(ConfigKey.MergeConfig);
+			var configLocation = _configManager.GetStringValue(SharedConfigKey.MergeConfig);
 
-			if (_configManager.GetBoolValue(ConfigKey.ConfigIsInSvn))
+			if (_configManager.GetBoolValue(SharedConfigKey.ConfigIsInSvn))
 			{
 				var stream = _svnInterface.Cat(configLocation);
 				stream.Position = 0;
