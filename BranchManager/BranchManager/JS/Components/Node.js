@@ -5,7 +5,7 @@
 			React.createElement(
 				'g',
 				{
-					transform: 'translate(' + (this.props.node.y + 50) + ', ' + (this.props.node.x + 50) + ')'
+					transform: 'translate(' + (this.props.node.y + this.props.margins.top) + ', ' + (this.props.node.x + this.props.margins.left) + ')'
 				},
 				React.createElement(Circle),
 				React.createElement(Text, { name: this.props.node.name })));

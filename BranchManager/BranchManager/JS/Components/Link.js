@@ -6,7 +6,7 @@
 				'path',
 				{
 					d: this.props.diagonal({ source: this.props.link.source, target: this.props.link.target }),
-					transform: 'translate(50, 50)'
+					transform: 'translate(' + this.props.margins.top + ', ' + this.props.margins.left + ')'
 				}))
 	}
 });
