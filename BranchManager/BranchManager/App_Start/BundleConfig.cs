@@ -9,9 +9,11 @@ namespace BranchManager
 			bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/Site.css"));
 
 			bundles.Add(new ScriptBundle("~/Scripts/libraries").Include(
+				"~/Scripts/jquery.js",
 				"~/Scripts/d3.js",
 				"~/Scripts/react.js",
-				"~/Scripts/react-dom.js"));
+				"~/Scripts/react-dom.js",
+				"~/Scripts/reflux.js"));
 
 			bundles.Add(new ScriptBundle("~/Scripts/app").Include(
 				"~/JS/Components/*.js",

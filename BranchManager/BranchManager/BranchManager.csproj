@@ -172,8 +172,10 @@
     <Content Include="JS\Components\Link.js" />
     <Content Include="JS\Components\Tree.js" />
     <Content Include="Scripts\d3.js" />
+    <Content Include="Scripts\jquery.js" />
     <Content Include="Scripts\react-dom.js" />
     <Content Include="Scripts\react.js" />
+    <Content Include="Scripts\reflux.js" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
