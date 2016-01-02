@@ -30,6 +30,6 @@
 	var diagonal = d3.svg.diagonal().projection(function (d) { return [d.y, d.x]; });
 
 	ReactDOM.render(
-		React.createElement(TreeRoot, { nodes: nodes, links: links, diagonal: diagonal }),
+		React.createElement(Tree, { nodes: nodes, links: links, diagonal: diagonal }),
 		document.getElementById('tree-container'));
 })();

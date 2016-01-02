@@ -166,6 +166,11 @@
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="JS\App.js" />
+    <Content Include="JS\Components\Node.js" />
+    <Content Include="JS\Components\Circle.js" />
+    <Content Include="JS\Components\Text.js" />
+    <Content Include="JS\Components\Link.js" />
+    <Content Include="JS\Components\Tree.js" />
     <Content Include="Scripts\d3.js" />
     <Content Include="Scripts\react-dom.js" />
     <Content Include="Scripts\react.js" />
@@ -184,9 +189,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="JS\Components.js" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\AutoMerger\AutoMerger.Shared\AutoMerger.Shared.csproj">
