@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
@@ -27,7 +28,11 @@ namespace BranchManager.Core.Tree
 
 		public string Name
 		{
-			get { return _projectUrl.Substring(_projectUrl.LastIndexOf('\\') + 1); }
+			get
+			{
+				return _projectUrl.Substring(
+					Math.Max(_projectUrl.LastIndexOf('\\'), _projectUrl.LastIndexOf('/')) + 1);
+			}
 		}
 	}
 }
