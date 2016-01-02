@@ -1,31 +1,10 @@
-﻿function getTreeData(margins) {
-	var data = {
-		name: "1.0",
-		enabled: true,
-		children: [
-			{
-				name: "trunk",
-				enabled: true,
-				children: [
-					{
-						name: "child-one",
-						enabled: true,
-						children: []
-					},
-					{
-						name: "child-two",
-						enabled: false,
-						children: []
-					}
-				]
-			}
-		]
-	};
-
+﻿function getTreeData(margins, data) {
 	var width = $(window).width() - margins.left - margins.right;
 	var height = $(window).height() - margins.top - margins.bottom;
 
-	var tree = d3.layout.tree().size([height, width]);
+	var tree = d3.layout.tree()
+		.size([height, width])
+		.children(node => node.branches.map(item => item.child));
 
 	var nodes = tree.nodes(data);
 	var links = tree.links(nodes);
@@ -39,7 +18,18 @@
 var Tree = React.createClass({
 	displayName: 'Tree',
 	getInitialState: function () {
-		return getTreeData(this.props.margins)
+		var $this = this;
+		$.ajax({url: "api/tree"}).done(function (data) {
+			var treeData = getTreeData($this.props.margins, data[0].roots[0]);
+			$this.setState({
+				nodes: treeData.nodes,
+				links: treeData.links
+			});
+		});
+		return {
+			nodes: [],
+			links: []
+		}
 	},
 	render: function () {
 		return (
