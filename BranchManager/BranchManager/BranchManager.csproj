@@ -171,6 +171,7 @@
     <Content Include="JS\Components\Text.js" />
     <Content Include="JS\Components\Link.js" />
     <Content Include="JS\Components\Tree.js" />
+    <Content Include="JS\Stores\TreeData.js" />
     <Content Include="Scripts\d3.js" />
     <Content Include="Scripts\jquery.js" />
     <Content Include="Scripts\react-dom.js" />
