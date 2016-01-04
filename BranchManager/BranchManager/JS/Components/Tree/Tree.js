@@ -1,6 +1,6 @@
 ﻿var Tree = React.createClass({
 	displayName: 'Tree',
-	mixins: [Reflux.connect(treeDataStore, "treeData")],
+	mixins: [Reflux.connect(TreeDataStore, "treeData")],
 	getInitialState: function () {
 		return {
 			treeData: {
