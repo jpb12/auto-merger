@@ -8,6 +8,7 @@
 			React.createElement(
 				'li',
 				{
+					className: 'project-list',
 					onClick: this.handleClick
 				},
 				this.props.project.name));
