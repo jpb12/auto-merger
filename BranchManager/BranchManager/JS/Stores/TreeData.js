@@ -1,7 +1,7 @@
 ﻿var TreeDataActions = Reflux.createActions([
-	"resize",
-	"setMargins",
-	"setProject"
+	'resize',
+	'setMargins',
+	'setProject'
 ]);
 
 var TreeDataStore = Reflux.createStore({

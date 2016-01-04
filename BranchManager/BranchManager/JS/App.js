@@ -1,5 +1,4 @@
 ﻿(function () {
-	var diagonal = d3.svg.diagonal().projection(function (d) { return [d.y, d.x]; });
 	var margins = {
 		top: 20,
 		bottom: 20,
@@ -12,6 +11,6 @@
 		document.getElementById('left-panel'));
 
 	ReactDOM.render(
-		React.createElement(Tree, { diagonal: diagonal, margins: margins }),
+		React.createElement(Tree, { margins: margins }),
 		document.getElementById('tree-container'));
 })();

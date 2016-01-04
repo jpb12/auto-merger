@@ -30,7 +30,6 @@
 					{
 						key: link.target.name,
 						link: link,
-						diagonal: this.props.diagonal,
 						margins: this.props.margins
 					})),
 				this.state.treeData.nodes.map(node =>
