@@ -1,4 +1,4 @@
-﻿var SettingStore = Reflux.createStore({
+﻿var SettingsStore = Reflux.createStore({
 	listenables: SettingsActions,
 	onSetProject: function (project) {
 		this.settings.projectUrl = project.projectUrl;
@@ -7,6 +7,7 @@
 	},
 	save: function () {
 		localStorage.setItem('BranchManager', JSON.stringify(this.settings));
+		this.trigger(this.settings);
 	},
 	init: function () {
 		this.settings = JSON.parse(localStorage.getItem('BranchManager')) || {};

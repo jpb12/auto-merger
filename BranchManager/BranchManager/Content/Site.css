@@ -31,7 +31,7 @@ ul {
 	background-color: #4A5FAB;
 }
 
-.project-list:hover {
+.project-list.active, .project-list:hover {
 	background-color: white;
 	color: #4A5FAB;
 }
