@@ -2,19 +2,12 @@
 	displayName: 'Tree',
 	mixins: [Reflux.connect(TreeDataStore, "treeData")],
 	getInitialState: function () {
-		return {
-			treeData: {
-				nodes: [],
-				links: []
-			}
-		}
+		return { treeData: TreeDataStore.getDefaultData() };
 	},
 	handleResize: function () {
 		TreeDataActions.resize();
 	},
 	componentDidMount: function () {
-		TreeDataActions.setMargins(this.props.margins);
-
 		$(window).on('resize', this.handleResize);
 	},
 	componentWillUnmount: function () {
@@ -29,16 +22,14 @@
 					Link,
 					{
 						key: link.target.name,
-						link: link,
-						margins: this.props.margins
+						link: link
 					})),
 				this.state.treeData.nodes.map(node =>
 					React.createElement(
 						Node,
 						{
 							key: node.name,
-							node: node,
-							margins: this.props.margins
+							node: node
 						}))));
 	}
 });

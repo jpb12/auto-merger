@@ -10,8 +10,7 @@
 				'path',
 				{
 					className: this.branch().enabled ? 'enabled' : 'disabled',
-					d: this.diagonal({ source: this.props.link.source, target: this.props.link.target }),
-					transform: 'translate(' + this.props.margins.top + ', ' + this.props.margins.left + ')'
+					d: this.diagonal({ source: this.props.link.source, target: this.props.link.target })
 				}))
 	}
 });

@@ -16,6 +16,7 @@ namespace BranchManager
 				"~/Scripts/reflux.js"));
 
 			bundles.Add(new ScriptBundle("~/Scripts/app").Include(
+				"~/JS/Actions.js",
 				"~/JS/Stores/*.js",
 				"~/JS/Components/LeftPanel/*.js",
 				"~/JS/Components/Tree/*.js",

@@ -1,15 +1,5 @@
-﻿var TreeDataActions = Reflux.createActions([
-	'resize',
-	'setMargins',
-	'setProject'
-]);
-
-var TreeDataStore = Reflux.createStore({
+﻿var TreeDataStore = Reflux.createStore({
 	listenables: TreeDataActions,
-	onSetMargins: function(margins) {
-		this.margins = margins;
-		this.onResize();
-	},
 	onSetProject: function(tree) {
 		this.currentTree = tree;
 		this.redraw();
@@ -21,7 +11,8 @@ var TreeDataStore = Reflux.createStore({
 		this.redraw();
 	},
 	redraw: function () {
-		if (!this.currentTree || !this.width || !this.height || !this.margins) {
+		if (!this.currentTree || !this.width || !this.height) {
+			this.trigger(this.result);
 			return;
 		}
 
@@ -39,9 +30,13 @@ var TreeDataStore = Reflux.createStore({
 		var nodes = allNodes.slice(1);
 
 		// we need to remove the offset caused by the temporary parent, and then scale the nodes to fill
-		// the full svg
+		// the full svg.  We also need to apply the margins
 		var depth = Math.max.apply(null, nodes.map(node => node.depth));
-		nodes.forEach(node => node.y = (node.y - this.width / depth) * (depth / (depth - 1)));
+		nodes.forEach(node => {
+			node.y = (node.y - this.width / depth) * (depth / (depth - 1));
+			node.x += this.margins.top;
+			node.y += this.margins.left;
+		});
 
 		var links = tree.links(nodes);
 
@@ -57,6 +52,13 @@ var TreeDataStore = Reflux.createStore({
 			nodes: [],
 			links: []
 		};
+		this.margins = {
+			top: 20,
+			bottom: 20,
+			left: 20,
+			right: 100
+		};
+		this.onResize();
 	},
 	getDefaultData: function() {
 		return this.result;

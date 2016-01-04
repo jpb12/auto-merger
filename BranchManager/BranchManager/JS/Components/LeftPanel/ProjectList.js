@@ -2,7 +2,7 @@
 	displayName: 'ProjectList',
 	mixins: [Reflux.connect(MergeConfigStore, "mergeConfig")],
 	getInitialState: function () {
-		return { mergeConfig: [] }
+		return { mergeConfig: MergeConfigStore.getDefaultData() };
 	},
 	render: function () {
 		return (

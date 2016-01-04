@@ -1,8 +1,4 @@
-﻿var SettingsActions = Reflux.createActions([
-	'setProject'
-]);
-
-var SettingStore = Reflux.createStore({
+﻿var SettingStore = Reflux.createStore({
 	listenables: SettingsActions,
 	onSetProject: function (project) {
 		this.settings.projectUrl = project.projectUrl;

@@ -1,9 +1,4 @@
-﻿var MergeConfigActions = Reflux.createActions([
-	'refresh',
-	'setProject'
-]);
-
-var MergeConfigStore = Reflux.createStore({
+﻿var MergeConfigStore = Reflux.createStore({
 	listenables: MergeConfigActions,
 	onRefresh: function () {
 		this.load();
