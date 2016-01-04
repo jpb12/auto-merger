@@ -21,7 +21,7 @@ var TreeDataStore = Reflux.createStore({
 		this.redraw();
 	},
 	redraw: function () {
-		if (!this.currentTree) {
+		if (!this.currentTree || !this.width || !this.height || !this.margins) {
 			return;
 		}
 
@@ -57,10 +57,6 @@ var TreeDataStore = Reflux.createStore({
 			nodes: [],
 			links: []
 		};
-
-		this.width = 0;
-		this.height = 0;
-		this.margins = {};
 	},
 	getDefaultData: function() {
 		return this.result;
