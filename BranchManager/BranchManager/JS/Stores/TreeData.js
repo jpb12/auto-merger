@@ -1,16 +1,21 @@
 ﻿var TreeDataActions = Reflux.createActions([
 	"resize",
-	"setMargins"
+	"setMargins",
+	"setProject"
 ]);
 
-var treeDataStore = Reflux.createStore({
+var TreeDataStore = Reflux.createStore({
 	listenables: TreeDataActions,
 	onSetMargins: function(margins) {
 		this.margins = margins;
 		this.onResize();
 	},
+	onSetProject: function(tree) {
+		this.currentTree = tree;
+		this.redraw();
+	},
 	onResize: function () {
-		this.width = $(window).width() - this.margins.left - this.margins.right;
+		this.width = $(window).width() - $('#left-panel').width() - this.margins.left - this.margins.right;
 		this.height = $(window).height() - this.margins.top - this.margins.bottom;
 
 		this.redraw();
@@ -56,11 +61,6 @@ var treeDataStore = Reflux.createStore({
 		this.width = 0;
 		this.height = 0;
 		this.margins = {};
-
-		$.ajax({ url: "api/tree" }).done(data => {
-			this.currentTree = data[0];
-			this.redraw();
-		});
 	},
 	getDefaultData: function() {
 		return this.result;

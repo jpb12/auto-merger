@@ -166,11 +166,14 @@
     <Content Include="Content\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="JS\App.js" />
-    <Content Include="JS\Components\Node.js" />
-    <Content Include="JS\Components\Circle.js" />
-    <Content Include="JS\Components\Text.js" />
-    <Content Include="JS\Components\Link.js" />
-    <Content Include="JS\Components\Tree.js" />
+    <Content Include="JS\Components\LeftPanel\Project.js" />
+    <Content Include="JS\Components\LeftPanel\ProjectList.js" />
+    <Content Include="JS\Components\Tree\Node.js" />
+    <Content Include="JS\Components\Tree\Circle.js" />
+    <Content Include="JS\Components\Tree\Text.js" />
+    <Content Include="JS\Components\Tree\Link.js" />
+    <Content Include="JS\Components\Tree\Tree.js" />
+    <Content Include="JS\Stores\MergeConfig.js" />
     <Content Include="JS\Stores\TreeData.js" />
     <Content Include="Scripts\d3.js" />
     <Content Include="Scripts\jquery.js" />
@@ -203,6 +206,7 @@
       <Name>BranchManager.Core</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

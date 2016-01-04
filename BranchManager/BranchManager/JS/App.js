@@ -8,6 +8,10 @@
 	};
 	
 	ReactDOM.render(
+		React.createElement(ProjectList),
+		document.getElementById('left-panel'));
+
+	ReactDOM.render(
 		React.createElement(Tree, { diagonal: diagonal, margins: margins }),
 		document.getElementById('tree-container'));
 })();

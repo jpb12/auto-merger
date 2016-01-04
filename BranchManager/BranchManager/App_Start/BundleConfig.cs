@@ -17,7 +17,8 @@ namespace BranchManager
 
 			bundles.Add(new ScriptBundle("~/Scripts/app").Include(
 				"~/JS/Stores/*.js",
-				"~/JS/Components/*.js",
+				"~/JS/Components/LeftPanel/*.js",
+				"~/JS/Components/Tree/*.js",
 				"~/JS/App.js"));
 		}
 	}
