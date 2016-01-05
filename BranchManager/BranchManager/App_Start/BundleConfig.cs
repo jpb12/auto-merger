@@ -13,12 +13,13 @@ namespace BranchManager
 				"~/Scripts/d3.js",
 				"~/Scripts/react.js",
 				"~/Scripts/react-dom.js",
-				"~/Scripts/reflux.js",
+				"~/Scripts/redux.js",
 				"~/Scripts/react-redux.js"));
 
 			bundles.Add(new ScriptBundle("~/Scripts/app").Include(
 				"~/JS/Actions.js",
-				"~/JS/Stores/*.js",
+				"~/JS/Reducers/*.js",
+				"~/JS/Store.js",
 				"~/JS/Components/Main.js",
 				"~/JS/Components/LeftPanel/*.js",
 				"~/JS/Components/Tree/*.js",

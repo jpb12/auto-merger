@@ -1,19 +1,17 @@
 ﻿var ProjectList = React.createClass({
 	displayName: 'ProjectList',
-	mixins: [Reflux.connect(MergeConfigStore, "mergeConfig")],
-	getInitialState: function () {
-		return { mergeConfig: MergeConfigStore.getDefaultData() };
-	},
 	render: function () {
 		return (
 			React.createElement(
 				'ul',
 				{},
-				this.state.mergeConfig.map(project => React.createElement(
+				this.props.config.map(project => React.createElement(
 					Project,
 					{
 						key: project.projectUrl,
 						project: project
 					}))));
 	}
-})
+});
+
+ProjectList = ReactRedux.connect(state => ({ config: state.config.data }))(ProjectList);

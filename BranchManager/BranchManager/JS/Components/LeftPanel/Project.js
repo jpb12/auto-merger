@@ -1,16 +1,12 @@
 ﻿var Project = React.createClass({
 	displayName: 'Project',
-	mixins: [Reflux.connect(SettingsStore, "settings")],
-	getInitialState: function () {
-		return { settings: SettingsStore.getDefaultData() };
+	handleClick: function () {
+		Store.dispatch(Actions.setProject(this.props.project.projectUrl));
 	},
-	handleClick: function() {
-		SettingsActions.setProject(this.props.project);
-	},
-	getClassName: function() {
+	getClassName: function () {
 		var className = 'project-list';
 
-		if (this.state.settings.projectUrl === this.props.project.projectUrl) {
+		if (this.props.project.projectUrl === this.props.currentProjectUrl) {
 			className += ' active';
 		}
 
@@ -26,4 +22,6 @@
 				},
 				this.props.project.name));
 	}
-})
+});
+
+Project = ReactRedux.connect(state => ({ currentProjectUrl: state.settings.projectUrl }))(Project);

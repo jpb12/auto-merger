@@ -1,0 +1,1 @@
+﻿var Store = Redux.createStore(Redux.combineReducers(Reducers));

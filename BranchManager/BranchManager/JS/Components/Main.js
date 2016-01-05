@@ -1,5 +1,8 @@
 ﻿var Main = React.createClass({
 	displayName: 'Main',
+	componentDidMount: function () {
+		Store.dispatch(Actions.getConfig());
+	},
 	render: function () {
 		return (
 			React.createElement(
