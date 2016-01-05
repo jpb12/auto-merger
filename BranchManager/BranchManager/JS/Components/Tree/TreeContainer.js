@@ -9,7 +9,7 @@
 			};
 		}
 
-		var project = this.props.config.filter(project => project.projectUrl !== this.props.projectUrl)[0]
+		var project = this.props.config.filter(project => project.projectUrl === this.props.projectUrl)[0]
 
 		var tree = d3.layout.tree()
 			.size([this.props.dimensions.height, this.props.dimensions.width])
