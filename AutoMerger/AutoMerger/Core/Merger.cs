@@ -71,7 +71,7 @@ namespace AutoMerger.Core
 
 		private MergeResult PerformMerge(string projectUrl, string parent, string child, string folderPath)
 		{
-			var initialRange = _svnInterface.GetMergeInfo(folderPath, parent);
+			var initialRange = _svnInterface.GetMergeInfo(projectUrl, child, parent);
 
 			if (!_svnInterface.Merge(projectUrl, parent, folderPath))
 			{
@@ -92,7 +92,7 @@ namespace AutoMerger.Core
 				throw new InvalidOperationException("Working copy contained conflicts after merge.");
 			}
 
-			var newRange = _svnInterface.GetMergeInfo(folderPath, parent);
+			var newRange = _svnInterface.GetMergeInfo(projectUrl, child, parent);
 
 			var mergedRevisions = GetMergedRevisions(initialRange, newRange);
 
@@ -134,14 +134,11 @@ namespace AutoMerger.Core
 
 		private SvnRevisionRange GetMergedRevisions(SvnRevisionRange initialRange, SvnRevisionRange newRange)
 		{
-			if (initialRange != null)
-			{
-				return new SvnRevisionRange(
+			return initialRange != null
+				? new SvnRevisionRange(
 					initialRange.EndRevision.Revision + 1,
-					newRange.EndRevision);
-			}
-
-			return newRange;
+					newRange.EndRevision)
+				: newRange;
 		}
 	}
 }

@@ -18,6 +18,10 @@ ul {
 	margin: 0;
 }
 
+ul.project-list {
+	margin: 20px 0;
+}
+
 #left-panel {
 	width: 200px;
 	height: 100%;

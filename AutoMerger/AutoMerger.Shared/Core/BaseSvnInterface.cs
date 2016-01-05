@@ -1,4 +1,5 @@
 ﻿using SharpSvn;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 
@@ -11,7 +12,8 @@ namespace AutoMerger.Shared.Core
 		bool CheckForConflicts(string folderPath);
 		bool CheckForModifications(string folderPath);
 		bool Commit(string folderPath, string message);
-		SvnRevisionRange GetMergeInfo(string folderPath, string parent);
+		SvnRevisionRange GetMergeInfo(SvnTarget path, string branch, string parent);
+		bool Log(string projectUrl, string branch, long? start, out Collection<SvnLogEventArgs> result);
 		bool Merge(string projectUrl, string parentBranch, string folderPath);
 		bool Update(string folderPath);
 	}
@@ -110,16 +112,21 @@ namespace AutoMerger.Shared.Core
 			}
 		}
 
-		public SvnRevisionRange GetMergeInfo(string folderPath, string parent)
+		public virtual SvnRevisionRange GetMergeInfo(SvnTarget target, string branch, string parent)
 		{
 			string value;
 
 			using (var svnClient = CreateSvnClient())
 			{
 				svnClient.GetProperty(
-					folderPath,
+					target,
 					"svn:mergeinfo",
 					out value);
+			}
+
+			if (value == null)
+			{
+				return null;
 			}
 
 			var branchPath = "/" + GetBranchPath(parent) + ":";
@@ -132,6 +139,27 @@ namespace AutoMerger.Shared.Core
 
 			var rangeSplit = branchRow.Replace(branchPath, "").Split('-');
 			return new SvnRevisionRange(long.Parse(rangeSplit[0]), long.Parse(rangeSplit[1]));
+		}
+
+		public bool Log(string projectUrl, string branch, long? start, out Collection<SvnLogEventArgs> result)
+		{
+			var svnPath = GetSvnPath(projectUrl, branch);
+
+			var args = start.HasValue
+				? new SvnLogArgs
+				{
+					End = new SvnRevision(start.Value),
+					StrictNodeHistory = true
+				}
+				: new SvnLogArgs
+				{
+					StrictNodeHistory = true
+				};
+
+			using (var svnClient = CreateSvnClient())
+			{
+				return svnClient.GetLog(svnPath.Uri, args, out result);
+			}
 		}
 
 		public bool Merge(string projectUrl, string parentBranch, string folderPath)
@@ -168,19 +196,14 @@ namespace AutoMerger.Shared.Core
 			}
 		}
 
-		private SvnUriTarget GetSvnPath(string projectUrl, string branch)
+		protected SvnUriTarget GetSvnPath(string projectUrl, string branch)
 		{
 			return new SvnUriTarget(UriCombine(projectUrl, GetBranchPath(branch)));
 		}
 
 		private string GetBranchPath(string branch)
 		{
-			if (branch == "trunk")
-			{
-				return branch;
-			}
-
-			return "branches/" + branch;
+			return branch == "trunk" ? branch : "branches/" + branch;
 		}
 
 		private string UriCombine(params string[] uriStrings)

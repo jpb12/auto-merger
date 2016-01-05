@@ -6,7 +6,9 @@ Components.ProjectList = React.createClass({
 		return (
 			React.createElement(
 				'ul',
-				{},
+				{
+					className: 'project-list'
+				},
 				this.props.config.map(project => React.createElement(
 					Components.Project,
 					{

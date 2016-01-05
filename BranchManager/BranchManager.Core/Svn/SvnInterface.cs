@@ -2,6 +2,7 @@
 using SharpSvn;
 using SharpSvn.Security;
 using System.IO;
+using System.Linq;
 
 namespace BranchManager.Core.Svn
 {
@@ -36,6 +37,13 @@ namespace BranchManager.Core.Svn
 				};
 
 			return client;
+		}
+
+		public override SvnRevisionRange GetMergeInfo(SvnTarget projectUrl, string branch, string parent)
+		{
+			var svnPath = GetSvnPath(projectUrl.ToString(), branch);
+
+			return base.GetMergeInfo(svnPath, branch, parent);
 		}
 	}
 }

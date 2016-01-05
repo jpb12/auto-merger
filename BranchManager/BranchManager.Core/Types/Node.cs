@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace BranchManager.Core.Tree
+namespace BranchManager.Core.Types
 {
 	public class Node
 	{
