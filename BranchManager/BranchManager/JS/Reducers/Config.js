@@ -3,7 +3,8 @@
 Reducers.config = function (state, action) {
 	if (typeof state === 'undefined') {
 		return {
-			data: []
+			data: [],
+			loading: true
 		};
 	}
 

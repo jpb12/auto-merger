@@ -21,6 +21,10 @@ ul {
 	box-shadow: 2px 0 4px #4A67CE;
 }
 
+#tree {
+	float: left;
+}
+
 .project-list {
 	margin: 5px;
 	padding: 5px;

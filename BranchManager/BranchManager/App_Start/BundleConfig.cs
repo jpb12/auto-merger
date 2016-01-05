@@ -23,6 +23,7 @@ namespace BranchManager
 				"~/JS/Components/Main.js",
 				"~/JS/Components/LeftPanel/*.js",
 				"~/JS/Components/Tree/*.js",
+				"~/JS/Components/Misc/*.js",
 				"~/JS/App.js"));
 		}
 	}

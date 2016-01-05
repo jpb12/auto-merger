@@ -7,6 +7,7 @@
 				{
 					id: 'left-panel'
 				},
-				React.createElement(ProjectList)));
+				React.createElement(ProjectList),
+				React.createElement(Refresh)));
 	}
 })

@@ -50,8 +50,13 @@
 		$(window).off('resize', this.handleResize);
 	},
 	render: function () {
-		if (this.props.config.length === 0) {
-			return React.createElement('div', { id: 'tree' });
+		if (this.props.loading) {
+			return (React.createElement(
+				'div',
+				{
+					id: 'tree'
+				},
+				React.createElement('Spinner')));
 		}
 
 		return (
@@ -68,6 +73,7 @@ TreeContainer = ReactRedux.connect(
 	state => (
 		{
 			config: state.config.data,
+			loading: state.config.loading,
 			dimensions: state.dimensions,
 			projectUrl: state.settings.projectUrl
 		}))(TreeContainer);
