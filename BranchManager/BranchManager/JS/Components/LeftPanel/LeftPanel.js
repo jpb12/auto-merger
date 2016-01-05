@@ -2,6 +2,9 @@
 
 Components.LeftPanel = React.createClass({
 	displayName: 'LeftPanel',
+	componentDidMount: function () {
+		Store.dispatch(Actions.resize());
+	},
 	render: function () {
 		return (
 			React.createElement(
