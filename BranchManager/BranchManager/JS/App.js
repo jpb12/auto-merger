@@ -2,5 +2,5 @@
 	React.createElement(
 		ReactRedux.Provider,
 		{ store: Store },
-		React.createElement(Main)),
-	document.body);
+		React.createElement(Components.Main)),
+	document.getElementById('app'));

@@ -1,4 +1,6 @@
-﻿var ProjectList = React.createClass({
+﻿var Components = Components || {};
+
+Components.ProjectList = React.createClass({
 	displayName: 'ProjectList',
 	render: function () {
 		return (
@@ -6,7 +8,7 @@
 				'ul',
 				{},
 				this.props.config.map(project => React.createElement(
-					Project,
+					Components.Project,
 					{
 						key: project.projectUrl,
 						project: project
@@ -14,4 +16,4 @@
 	}
 });
 
-ProjectList = ReactRedux.connect(state => ({ config: state.config.data }))(ProjectList);
+Components.ProjectList = ReactRedux.connect(state => ({ config: state.config.data }))(Components.ProjectList);

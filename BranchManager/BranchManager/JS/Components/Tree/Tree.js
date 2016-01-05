@@ -1,4 +1,6 @@
-﻿var Tree = React.createClass({
+﻿var Components = Components || {};
+
+Components.Tree = React.createClass({
 	displayName: 'Tree',
 	render: function () {
 		return (
@@ -6,14 +8,14 @@
 				'svg',
 				{},
 				this.props.links.map(link => React.createElement(
-					Link,
+					Components.Link,
 					{
 						key: link.target.name,
 						link: link
 					})),
 				this.props.nodes.map(node =>
 					React.createElement(
-						Node,
+						Components.Node,
 						{
 							key: node.name,
 							node: node

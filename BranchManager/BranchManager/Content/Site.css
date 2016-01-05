@@ -1,8 +1,14 @@
-﻿body, html, #container {
+﻿body, html {
 	margin: 0;
 	padding: 0;
 	overflow: hidden;
+}
+
+body, html, #container, #app {
 	height: 100%;
+}
+
+#container {
 	font-family: helvetica;
 }
 
@@ -21,11 +27,7 @@ ul {
 	box-shadow: 2px 0 4px #4A67CE;
 }
 
-#tree {
-	float: left;
-}
-
-.project-list {
+.button {
 	margin: 5px;
 	padding: 5px;
 	border-style: solid;
@@ -35,13 +37,18 @@ ul {
 	background-color: #4A5FAB;
 }
 
-.project-list.active, .project-list:hover {
+.button.active, .button:hover {
 	background-color: white;
 	color: #4A5FAB;
 }
 
-#tree-container {
-	height: 100%;
+#tree {
+	float: left;
+}
+
+#tree .spinner {
+	margin: 10px;
+	color: #4A67CE;
 }
 
 svg {

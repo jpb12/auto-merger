@@ -1,4 +1,6 @@
-﻿var Link = React.createClass({
+﻿var Components = Components || {};
+
+Components.Link = React.createClass({
 	branch: function() {
 		return this.props.link.source.branches.filter(branch => branch.child == this.props.link.target)[0];
 	},

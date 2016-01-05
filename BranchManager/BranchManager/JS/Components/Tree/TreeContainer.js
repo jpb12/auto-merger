@@ -1,4 +1,6 @@
-﻿var TreeContainer = React.createClass({
+﻿var Components = Components || {};
+
+Components.TreeContainer = React.createClass({
 	displayName: 'TreeContainer',
 	getTreeData: function () {
 		if (this.props.config.every(project => project.projectUrl !== this.props.projectUrl)) {
@@ -56,7 +58,7 @@
 				{
 					id: 'tree'
 				},
-				React.createElement('Spinner')));
+				React.createElement(Components.Spinner)));
 		}
 
 		return (
@@ -65,15 +67,15 @@
 				{
 					id: 'tree'
 				},
-				React.createElement(Tree, this.getTreeData())));
+				React.createElement(Components.Tree, this.getTreeData())));
 	}
 })
 
-TreeContainer = ReactRedux.connect(
+Components.TreeContainer = ReactRedux.connect(
 	state => (
 		{
 			config: state.config.data,
 			loading: state.config.loading,
 			dimensions: state.dimensions,
 			projectUrl: state.settings.projectUrl
-		}))(TreeContainer);
+	}))(Components.TreeContainer);

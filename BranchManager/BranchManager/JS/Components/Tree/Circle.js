@@ -1,4 +1,6 @@
-﻿var Circle = React.createClass({
+﻿var Components = Components || {};
+
+Components.Circle = React.createClass({
 	displayName: 'Circle',
 	render: function () {
 		return (React.createElement('circle'));

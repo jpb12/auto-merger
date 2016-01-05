@@ -1,4 +1,6 @@
-﻿var Main = React.createClass({
+﻿var Components = Components || {};
+
+Components.Main = React.createClass({
 	displayName: 'Main',
 	componentDidMount: function () {
 		Store.dispatch(Actions.getConfig());
@@ -10,7 +12,7 @@
 				{
 					id: 'container'
 				},
-				React.createElement(LeftPanel),
-				React.createElement(TreeContainer)));
+				React.createElement(Components.LeftPanel),
+				React.createElement(Components.TreeContainer)));
 	}
 })

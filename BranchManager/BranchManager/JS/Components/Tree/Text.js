@@ -1,4 +1,6 @@
-﻿var Text = React.createClass({
+﻿var Components = Components || {};
+
+Components.Text = React.createClass({
 	displayName: 'Text',
 	render: function () {
 		return (

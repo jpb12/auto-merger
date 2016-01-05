@@ -1,10 +1,12 @@
-﻿var Project = React.createClass({
+﻿var Components = Components || {};
+
+Components.Project = React.createClass({
 	displayName: 'Project',
 	handleClick: function () {
 		Store.dispatch(Actions.setProject(this.props.project.projectUrl));
 	},
 	getClassName: function () {
-		var className = 'project-list';
+		var className = 'button';
 
 		if (this.props.project.projectUrl === this.props.currentProjectUrl) {
 			className += ' active';
@@ -24,4 +26,4 @@
 	}
 });
 
-Project = ReactRedux.connect(state => ({ currentProjectUrl: state.settings.projectUrl }))(Project);
+Components.Project = ReactRedux.connect(state => ({ currentProjectUrl: state.settings.projectUrl }))(Components.Project);

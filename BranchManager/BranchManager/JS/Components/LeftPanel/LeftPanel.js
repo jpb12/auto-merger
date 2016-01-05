@@ -1,4 +1,6 @@
-﻿var LeftPanel = React.createClass({
+﻿var Components = Components || {};
+
+Components.LeftPanel = React.createClass({
 	displayName: 'LeftPanel',
 	render: function () {
 		return (
@@ -7,7 +9,7 @@
 				{
 					id: 'left-panel'
 				},
-				React.createElement(ProjectList),
-				React.createElement(Refresh)));
+				React.createElement(Components.ProjectList),
+				React.createElement(Components.Refresh)));
 	}
 })
