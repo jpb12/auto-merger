@@ -1,6 +1,7 @@
 ﻿var ActionType = {
 	GET_CONFIG: 'GET_CONFIG',
 	RESIZE: 'RESIZE',
+	SET_COMMITS: 'SET_COMMITS',
 	SET_PROJECT: 'SET_PROJECT'
 }
 
@@ -29,10 +30,16 @@ var Actions = {
 			type: ActionType.RESIZE
 		};
 	},
+	setCommits: function (commits) {
+		return {
+			type: ActionType.SET_COMMITS,
+			commits
+		};
+	},
 	setProject: function (projectUrl) {
 		return {
 			type: ActionType.SET_PROJECT,
 			projectUrl
 		};
-	},
+	}
 };

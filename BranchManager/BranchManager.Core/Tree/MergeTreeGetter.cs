@@ -51,8 +51,8 @@ namespace BranchManager.Core.Tree
 				name,
 				childMerges.Select(m =>
 					new Branch(
-						m.Enabled,
 						GetNodeTree(m.Child, projectUrl, merges),
+						m.Enabled,
 						_unmergedRevisionGetter.GetUnmergedRevisions(projectUrl, m.Child, name))));
 		}
 	}

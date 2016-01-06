@@ -13,6 +13,7 @@ Components.LeftPanel = React.createClass({
 					id: 'left-panel'
 				},
 				React.createElement(Components.ProjectList),
-				React.createElement(Components.Refresh)));
+				React.createElement(Components.Refresh),
+				React.createElement(Components.Gradient)));
 	}
 })

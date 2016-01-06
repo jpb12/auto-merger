@@ -29,6 +29,47 @@ ul.project-list {
 	background-color: #4A67CE;
 	color: white;
 	box-shadow: 2px 0 4px #4A67CE;
+	position: relative;
+}
+
+#gradient {
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+}
+
+#gradient-input {
+	width: 33px;
+	margin-right: 2px;
+	text-align: center;
+	margin-bottom: 10px;
+	float: right;
+	background: transparent;
+	color: white;
+	font-size: 16px;
+	border-style: none;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+}
+
+#gradient-input::-webkit-outer-spin-button,
+#gradient-input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+#gradient-display {
+	height: 5px;
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	background-image: linear-gradient( to right, #2A27F3, #02AABB 25%, #EFFF00 35%, #D29100 55%, #AD0000 100% );
+}
+
+#gradient-label {
+	margin-left: 6px;
+	position: relative;
+	top: 2px;
 }
 
 .button {
@@ -39,6 +80,7 @@ ul.project-list {
 	border-radius: 10pc;
 	text-align: center;
 	background-color: #4A5FAB;
+	cursor: pointer;
 }
 
 .button.active, .button:hover {

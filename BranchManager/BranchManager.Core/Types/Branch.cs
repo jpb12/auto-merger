@@ -4,18 +4,13 @@
 	{
 		private readonly bool _enabled;
 		private readonly Node _child;
-		private readonly int _unmergedRevisions;
+		private readonly long _unmergedRevisions;
 
-		public Branch(bool enabled, Node child, int unmergedRevisions)
+		public Branch(Node child, bool enabled, long unmergedRevisions)
 		{
-			_enabled = enabled;
 			_child = child;
+			_enabled = enabled;
 			_unmergedRevisions = unmergedRevisions;
-		}
-
-		public bool Enabled
-		{
-			get { return _enabled; }
 		}
 
 		public Node Child
@@ -23,7 +18,12 @@
 			get { return _child; }
 		}
 
-		public int UnmergedRevisions
+		public bool Enabled
+		{
+			get { return _enabled; }
+		}
+
+		public long UnmergedRevisions
 		{
 			get { return _unmergedRevisions; }
 		}

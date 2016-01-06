@@ -28,7 +28,6 @@ Reducers.config = function (state, action) {
 			return Object.assign({}, state, {
 				loading: false
 			});
-			window.alert(action.error);
 	}
 
 	return state;

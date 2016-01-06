@@ -169,6 +169,8 @@
     <Content Include="Global.asax" />
     <Content Include="JS\Actions.js" />
     <Content Include="JS\App.js" />
+    <Content Include="JS\Components\LeftPanel\Gradient.js" />
+    <Content Include="JS\Components\LeftPanel\GradientInput.js" />
     <Content Include="JS\Components\LeftPanel\LeftPanel.js" />
     <Content Include="JS\Components\LeftPanel\Project.js" />
     <Content Include="JS\Components\LeftPanel\ProjectList.js" />
