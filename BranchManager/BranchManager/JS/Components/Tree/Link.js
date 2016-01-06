@@ -5,8 +5,15 @@ Components.Link = React.createClass({
 		return this.props.link.source.branches.filter(branch => branch.child == this.props.link.target)[0];
 	},
 	displayName: 'Link',
-	diagonal: d3.svg.diagonal().projection(function(d) { return [d.y, d.x]; }),
-	getColour: function () {
+	diagonal: d3.svg.diagonal().projection(function (d) { return [d.y, d.x]; }),
+	getClassName: function () {
+		var className = this.branch().enabled ? 'enabled' : 'disabled'
+		className += this.props.link.source.exists && this.props.link.target.exists
+			? ' exits'
+			: ' not-exists';
+		return className;
+	},
+	getColour: function() {
 		var colours = [
 			{ r: 42, g: 243, b: 39, percent: 0 },
 			{ r: 2, g: 187, b: 170, percent: 0.25 },
@@ -39,7 +46,7 @@ Components.Link = React.createClass({
 			React.createElement(
 				'path',
 				{
-					className: this.branch().enabled ? 'enabled' : 'disabled',
+					className: this.getClassName(),
 					stroke: this.getColour(),
 					d: this.diagonal({ source: this.props.link.source, target: this.props.link.target })
 				}))

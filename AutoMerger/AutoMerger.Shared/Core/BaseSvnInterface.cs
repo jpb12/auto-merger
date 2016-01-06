@@ -13,6 +13,7 @@ namespace AutoMerger.Shared.Core
 		bool CheckForModifications(string folderPath);
 		bool Commit(string folderPath, string message);
 		SvnRevisionRange GetMergeInfo(SvnTarget path, string branch, string parent);
+		bool List(string projectUrl, out Collection<SvnListEventArgs> result);
 		bool Log(string projectUrl, string branch, long? start, out Collection<SvnLogEventArgs> result);
 		bool Merge(string projectUrl, string parentBranch, string folderPath);
 		bool Update(string folderPath);
@@ -139,6 +140,22 @@ namespace AutoMerger.Shared.Core
 
 			var rangeSplit = branchRow.Replace(branchPath, "").Split('-');
 			return new SvnRevisionRange(long.Parse(rangeSplit[0]), long.Parse(rangeSplit[1]));
+		}
+
+		public bool List(string projectUrl, out Collection<SvnListEventArgs> result)
+		{
+			var svnPath = new SvnUriTarget(UriCombine(projectUrl, "branches"));
+
+			var args = new SvnListArgs
+			{
+				Depth = SvnDepth.Children,
+				IncludeExternals = false
+			};
+
+			using (var svnClient = CreateSvnClient())
+			{
+				return svnClient.GetList(svnPath.Uri, args, out result);
+			}
 		}
 
 		public bool Log(string projectUrl, string branch, long? start, out Collection<SvnLogEventArgs> result)

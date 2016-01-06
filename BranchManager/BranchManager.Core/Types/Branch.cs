@@ -4,9 +4,9 @@
 	{
 		private readonly bool _enabled;
 		private readonly Node _child;
-		private readonly long _unmergedRevisions;
+		private readonly long? _unmergedRevisions;
 
-		public Branch(Node child, bool enabled, long unmergedRevisions)
+		public Branch(Node child, bool enabled, long? unmergedRevisions)
 		{
 			_child = child;
 			_enabled = enabled;
@@ -23,7 +23,7 @@
 			get { return _enabled; }
 		}
 
-		public long UnmergedRevisions
+		public long? UnmergedRevisions
 		{
 			get { return _unmergedRevisions; }
 		}

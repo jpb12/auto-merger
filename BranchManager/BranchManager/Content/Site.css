@@ -114,3 +114,15 @@ path {
 path.disabled {
 	stroke-dasharray: 5,5;
 }
+
+g.not-exists, path.not-exists {
+	opacity: 0.3;
+}
+
+path.not-exists {
+	stroke: red;
+}
+
+g.not-exists circle {
+	fill: red;
+}
