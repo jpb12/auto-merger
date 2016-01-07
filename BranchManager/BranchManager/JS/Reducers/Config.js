@@ -13,7 +13,9 @@ Reducers.config = function (state, action) {
 			if (action.success === undefined) {
 				$.ajax({ url: "api/tree" }).done(data => {
 					Store.dispatch(Actions.getConfigSuccess(data));
-				});
+				}).fail((jqXHR, textStatus, errorThrown) => {
+					Store.dispatch(Actions.getConfigError(errorThrown));
+				})
 				return Object.assign({}, state, {
 					loading: true
 				});;
