@@ -1,6 +1,7 @@
 ﻿var ActionType = {
 	GET_CONFIG: 'GET_CONFIG',
 	RESIZE: 'RESIZE',
+	SET_ACTIVE_NODE: 'SET_ACTIVE_NODE',
 	SET_COMMITS: 'SET_COMMITS',
 	SET_PROJECT: 'SET_PROJECT'
 }
@@ -28,6 +29,12 @@ var Actions = {
 	resize: function() {
 		return {
 			type: ActionType.RESIZE
+		};
+	},
+	setActiveNode: function(node) {
+		return {
+			type: ActionType.SET_ACTIVE_NODE,
+			node: node
 		};
 	},
 	setCommits: function (commits) {

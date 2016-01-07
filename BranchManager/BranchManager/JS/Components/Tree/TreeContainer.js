@@ -14,7 +14,7 @@ Components.TreeContainer = React.createClass({
 		var project = this.props.config.filter(project => project.projectUrl === this.props.projectUrl)[0]
 
 		var tree = d3.layout.tree()
-			.size([this.props.dimensions.height, this.props.dimensions.width])
+			.size([this.props.dimensions.height, this.props.dimensions.contentWidth])
 			.children(node => node.branches.map(item => item.child));
 
 		// d3 trees can only have one root node, so to show the merge tree when there are multiple nodes
@@ -30,7 +30,7 @@ Components.TreeContainer = React.createClass({
 		// the full svg.  We also need to apply the margins
 		var depth = Math.max.apply(null, nodes.map(node => node.depth));
 		nodes.forEach(node => {
-			node.y = (node.y - this.props.dimensions.width / depth) * (depth / (depth - 1));
+			node.y = (node.y - this.props.dimensions.contentWidth / depth) * (depth / (depth - 1));
 			node.x += this.props.dimensions.margins.top;
 			node.y += this.props.dimensions.margins.left;
 		});

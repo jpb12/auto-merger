@@ -20,6 +20,8 @@ namespace BranchManager.Core.Tree
 
 		public int GetUnmergedRevisions(string projectUrl, string child, string parent)
 		{
+			// TODO: Edge cases
+
 			long start;
 
 			var revisions = _svnInterface.GetMergeInfo(projectUrl, child, parent);

@@ -177,12 +177,14 @@
     <Content Include="JS\Components\LeftPanel\Refresh.js" />
     <Content Include="JS\Components\Main.js" />
     <Content Include="JS\Components\Misc\Spinner.js" />
+    <Content Include="JS\Components\RightPanel\RightPanel.js" />
     <Content Include="JS\Components\Tree\Node.js" />
     <Content Include="JS\Components\Tree\Circle.js" />
     <Content Include="JS\Components\Tree\Text.js" />
     <Content Include="JS\Components\Tree\Link.js" />
     <Content Include="JS\Components\Tree\Tree.js" />
     <Content Include="JS\Components\Tree\TreeContainer.js" />
+    <Content Include="JS\Reducers\ActiveNode.js" />
     <Content Include="JS\Reducers\Config.js" />
     <Content Include="JS\Reducers\Settings.js" />
     <Content Include="JS\Reducers\Dimensions.js" />

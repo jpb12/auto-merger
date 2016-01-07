@@ -12,15 +12,7 @@ body, html, #container, #app {
 	font-family: helvetica;
 }
 
-ul {
-	list-style-type: none;
-	padding: 0;
-	margin: 0;
-}
-
-ul.project-list {
-	margin: 20px 0;
-}
+/* Left Panel */
 
 #left-panel {
 	width: 200px;
@@ -30,6 +22,16 @@ ul.project-list {
 	color: white;
 	box-shadow: 2px 0 4px #4A67CE;
 	position: relative;
+}
+
+ul {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+ul.project-list {
+	margin: 20px 0;
 }
 
 #gradient {
@@ -72,21 +74,7 @@ ul.project-list {
 	top: 2px;
 }
 
-.button {
-	margin: 5px;
-	padding: 5px;
-	border-style: solid;
-	border-width: 1px;
-	border-radius: 10pc;
-	text-align: center;
-	background-color: #4A5FAB;
-	cursor: pointer;
-}
-
-.button.active, .button:hover {
-	background-color: white;
-	color: #4A5FAB;
-}
+/* Tree */
 
 #tree {
 	float: left;
@@ -99,7 +87,6 @@ ul.project-list {
 
 svg {
 	height: 100vh;
-	width: calc(100vw - 200px);
 }
 
 circle {
@@ -115,6 +102,10 @@ path.disabled {
 	stroke-dasharray: 5,5;
 }
 
+g {
+	cursor: pointer;
+}
+
 g.not-exists, path.not-exists {
 	opacity: 0.3;
 }
@@ -125,4 +116,44 @@ path.not-exists {
 
 g.not-exists circle {
 	fill: red;
+}
+
+/* Right Panel */
+
+#right-panel {
+	width: 200px;
+	height: 100%;
+	float: left;
+	box-shadow: -2px 0 4px #B7B7B7;
+	background-color: #F3F3F3;
+}
+
+h2 {
+	text-align: center;
+	padding: 5px 0;
+	margin: 0;
+	color: white;
+	background-color: #4A67CE;
+}
+
+/* Misc */
+
+.hidden {
+	display: none;
+}
+
+.button {
+	margin: 5px;
+	padding: 5px;
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 10pc;
+	text-align: center;
+	background-color: #4A5FAB;
+	cursor: pointer;
+}
+
+.button.active, .button:hover {
+	background-color: white;
+	color: #4A5FAB;
 }

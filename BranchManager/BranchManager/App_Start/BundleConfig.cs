@@ -22,6 +22,7 @@ namespace BranchManager
 				"~/JS/Store.js",
 				"~/JS/Components/Main.js",
 				"~/JS/Components/LeftPanel/*.js",
+				"~/JS/Components/RightPanel/*.js",
 				"~/JS/Components/Tree/*.js",
 				"~/JS/Components/Misc/*.js",
 				"~/JS/App.js"));

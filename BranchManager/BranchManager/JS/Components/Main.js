@@ -13,6 +13,9 @@ Components.Main = React.createClass({
 					id: 'container'
 				},
 				React.createElement(Components.LeftPanel),
-				React.createElement(Components.TreeContainer)));
+				React.createElement(Components.TreeContainer),
+				this.props.hasActiveNode ? React.createElement(Components.RightPanel) : undefined));
 	}
 })
+
+Components.Main = ReactRedux.connect(state => ({ hasActiveNode: !!state.activeNode }))(Components.Main);

@@ -6,7 +6,9 @@ Components.Tree = React.createClass({
 		return (
 			React.createElement(
 				'svg',
-				{},
+				{
+					width: this.props.width
+				},
 				this.props.links.map(link => React.createElement(
 					Components.Link,
 					{
@@ -22,3 +24,5 @@ Components.Tree = React.createClass({
 						}))));
 	}
 });
+
+Components.Tree = ReactRedux.connect(state => ({ width: state.dimensions.fullWidth }))(Components.Tree);
