@@ -1,6 +1,4 @@
-﻿var Reducers = Reducers || {};
-
-Reducers.config = function (state, action) {
+﻿BranchManager.Reducers.config = function (state, action) {
 	if (typeof state === 'undefined') {
 		return {
 			data: [],
@@ -9,12 +7,12 @@ Reducers.config = function (state, action) {
 	}
 
 	switch (action.type) {
-		case ActionType.GET_CONFIG:
+		case BranchManager.Actions.ActionType.GET_CONFIG:
 			if (action.success === undefined) {
 				$.ajax({ url: "api/tree" }).done(data => {
-					Store.dispatch(Actions.getConfigSuccess(data));
+					BranchManager.Actions.getConfigSuccess(data);
 				}).fail((jqXHR, textStatus, errorThrown) => {
-					Store.dispatch(Actions.getConfigError(errorThrown));
+					BranchManager.Actions.getConfigError(errorThrown);
 				})
 				return Object.assign({}, state, {
 					loading: true

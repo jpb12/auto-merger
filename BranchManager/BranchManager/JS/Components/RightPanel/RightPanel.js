@@ -1,14 +1,12 @@
-﻿var Components = Components || {};
-
-Components.RightPanel = React.createClass({
+﻿BranchManager.Components.RightPanel = React.createClass({
 	displayName: 'RightPanel',
 	componentDidMount: function () {
-		Store.dispatch(Actions.resize());
+		BranchManager.Actions.resize();
 	},
 	componentWillUnmount: function () {
 		// TODO: Massive hack
 		$(ReactDOM.findDOMNode(this)).width(0);
-		Store.dispatch(Actions.resize());
+		BranchManager.Actions.resize();
 	},
 	render: function () {
 		return (
@@ -22,4 +20,4 @@ Components.RightPanel = React.createClass({
 	}
 })
 
-Components.RightPanel = ReactRedux.connect(state => ({ activeNode: state.activeNode }))(Components.RightPanel);
+BranchManager.Components.RightPanel = ReactRedux.connect(state => ({ activeNode: state.activeNode }))(BranchManager.Components.RightPanel);

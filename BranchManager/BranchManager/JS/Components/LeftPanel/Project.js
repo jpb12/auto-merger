@@ -1,9 +1,7 @@
-﻿var Components = Components || {};
-
-Components.Project = React.createClass({
+﻿BranchManager.Components.Project = React.createClass({
 	displayName: 'Project',
 	handleClick: function () {
-		Store.dispatch(Actions.setProject(this.props.project.projectUrl));
+		BranchManager.Actions.setProject(this.props.project.projectUrl);
 	},
 	getClassName: function () {
 		var className = 'button';
@@ -26,4 +24,4 @@ Components.Project = React.createClass({
 	}
 });
 
-Components.Project = ReactRedux.connect(state => ({ currentProjectUrl: state.settings.projectUrl }))(Components.Project);
+BranchManager.Components.Project = ReactRedux.connect(state => ({ currentProjectUrl: state.settings.projectUrl }))(BranchManager.Components.Project);

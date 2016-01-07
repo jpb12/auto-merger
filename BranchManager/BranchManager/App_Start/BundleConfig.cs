@@ -17,6 +17,7 @@ namespace BranchManager
 				"~/Scripts/react-redux.js"));
 
 			bundles.Add(new ScriptBundle("~/Scripts/app").Include(
+				"~/JS/Init.js",
 				"~/JS/Actions.js",
 				"~/JS/Reducers/*.js",
 				"~/JS/Store.js",

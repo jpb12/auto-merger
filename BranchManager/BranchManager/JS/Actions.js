@@ -1,52 +1,51 @@
-﻿var ActionType = {
-	GET_CONFIG: 'GET_CONFIG',
-	RESIZE: 'RESIZE',
-	SET_ACTIVE_NODE: 'SET_ACTIVE_NODE',
-	SET_COMMITS: 'SET_COMMITS',
-	SET_PROJECT: 'SET_PROJECT'
-}
-
-var Actions = {
+﻿BranchManager.Actions = {
+	ActionType: {
+		GET_CONFIG: 'GET_CONFIG',
+		RESIZE: 'RESIZE',
+		SET_ACTIVE_NODE: 'SET_ACTIVE_NODE',
+		SET_COMMITS: 'SET_COMMITS',
+		SET_PROJECT: 'SET_PROJECT'
+	},
 	getConfig: function () {
-		return {
-			type: ActionType.GET_CONFIG
-		};
+		BranchManager.Store.dispatch({
+			type: BranchManager.Actions.ActionType.GET_CONFIG
+		});
 	},
 	getConfigError: function (error) {
-		return {
-			type: ActionType.GET_CONFIG,
+		BranchManager.Store.dispatch({
+			type: BranchManager.Actions.ActionType.GET_CONFIG,
 			success: false,
 			error
-		};
+		});
 	},
 	getConfigSuccess: function (response) {
-		return {
-			type: ActionType.GET_CONFIG,
+		BranchManager.Store.dispatch({
+			type: BranchManager.Actions.ActionType.GET_CONFIG,
 			success: true,
 			response
-		};
+		});
 	},
 	resize: function() {
-		return {
-			type: ActionType.RESIZE
-		};
+		BranchManager.Store.dispatch({
+			type: BranchManager.Actions.ActionType.RESIZE
+		});
 	},
 	setActiveNode: function(node) {
-		return {
-			type: ActionType.SET_ACTIVE_NODE,
+		BranchManager.Store.dispatch({
+			type: BranchManager.Actions.ActionType.SET_ACTIVE_NODE,
 			node: node
-		};
+		});
 	},
 	setCommits: function (commits) {
-		return {
+		BranchManager.Store.dispatch({
 			type: ActionType.SET_COMMITS,
 			commits
-		};
+		});
 	},
 	setProject: function (projectUrl) {
-		return {
-			type: ActionType.SET_PROJECT,
+		BranchManager.Store.dispatch({
+			type: BranchManager.Actions.ActionType.SET_PROJECT,
 			projectUrl
-		};
+		});
 	}
 };

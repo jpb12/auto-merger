@@ -1,9 +1,7 @@
-﻿var Components = Components || {};
-
-Components.Refresh = React.createClass({
+﻿BranchManager.Components.Refresh = React.createClass({
 	displayName: 'Refresh',
 	handleClick: function () {
-		Store.dispatch(Actions.getConfig());
+		BranchManager.Actions.getConfig();
 	},
 	render: function () {
 		return (

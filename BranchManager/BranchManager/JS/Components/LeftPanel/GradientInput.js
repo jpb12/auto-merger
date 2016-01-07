@@ -1,9 +1,7 @@
-﻿var Components = Components || {};
-
-Components.GradientInput = React.createClass({
+﻿BranchManager.Components.GradientInput = React.createClass({
 	displayName: 'GradientInput',
 	handleChange: function (e) {
-		Store.dispatch(Actions.setCommits(e.target.value));
+		BranchManager.Actions.setCommits(e.target.value);
 	},
 	render: function () {
 		return (
@@ -18,4 +16,4 @@ Components.GradientInput = React.createClass({
 	}
 });
 
-Components.GradientInput = ReactRedux.connect(state => ({ commits: state.settings.commits }))(Components.GradientInput);
+BranchManager.Components.GradientInput = ReactRedux.connect(state => ({ commits: state.settings.commits }))(BranchManager.Components.GradientInput);

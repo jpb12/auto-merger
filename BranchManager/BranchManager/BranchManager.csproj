@@ -184,6 +184,7 @@
     <Content Include="JS\Components\Tree\Link.js" />
     <Content Include="JS\Components\Tree\Tree.js" />
     <Content Include="JS\Components\Tree\TreeContainer.js" />
+    <Content Include="JS\Init.js" />
     <Content Include="JS\Reducers\ActiveNode.js" />
     <Content Include="JS\Reducers\Config.js" />
     <Content Include="JS\Reducers\Settings.js" />

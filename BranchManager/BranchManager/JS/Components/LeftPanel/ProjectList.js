@@ -1,6 +1,4 @@
-﻿var Components = Components || {};
-
-Components.ProjectList = React.createClass({
+﻿BranchManager.Components.ProjectList = React.createClass({
 	displayName: 'ProjectList',
 	render: function () {
 		return (
@@ -10,7 +8,7 @@ Components.ProjectList = React.createClass({
 					className: 'project-list'
 				},
 				this.props.config.map(project => React.createElement(
-					Components.Project,
+					BranchManager.Components.Project,
 					{
 						key: project.projectUrl,
 						project: project
@@ -18,4 +16,4 @@ Components.ProjectList = React.createClass({
 	}
 });
 
-Components.ProjectList = ReactRedux.connect(state => ({ config: state.config.data }))(Components.ProjectList);
+BranchManager.Components.ProjectList = ReactRedux.connect(state => ({ config: state.config.data }))(BranchManager.Components.ProjectList);

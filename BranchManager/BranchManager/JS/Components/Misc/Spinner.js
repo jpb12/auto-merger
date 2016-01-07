@@ -1,6 +1,4 @@
-﻿var Components = Components || {};
-
-Components.Spinner = React.createClass({
+﻿BranchManager.Components.Spinner = React.createClass({
 	displayName: 'Spinner',
 	render: function () {
 		return (

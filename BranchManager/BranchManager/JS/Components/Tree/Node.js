@@ -1,9 +1,7 @@
-﻿var Components = Components || {};
-
-Components.Node = React.createClass({
+﻿BranchManager.Components.Node = React.createClass({
 	displayName: 'Node',
 	handleClick: function() {
-		Store.dispatch(Actions.setActiveNode(this.props.node));
+		BranchManager.Actions.setActiveNode(this.props.node);
 	},
 	render: function() {
 		return (
@@ -14,7 +12,7 @@ Components.Node = React.createClass({
 					transform: 'translate(' + this.props.node.y + ', ' + this.props.node.x + ')',
 					onClick: this.handleClick
 				},
-				React.createElement(Components.Circle),
-				React.createElement(Components.Text, { name: this.props.node.name })));
+				React.createElement(BranchManager.Components.Circle),
+				React.createElement(BranchManager.Components.Text, { name: this.props.node.name })));
 	}
 });

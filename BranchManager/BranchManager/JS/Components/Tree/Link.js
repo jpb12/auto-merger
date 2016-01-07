@@ -1,6 +1,4 @@
-﻿var Components = Components || {};
-
-Components.Link = React.createClass({
+﻿BranchManager.Components.Link = React.createClass({
 	branch: function() {
 		return this.props.link.source.branches.filter(branch => branch.child == this.props.link.target)[0];
 	},
@@ -53,4 +51,4 @@ Components.Link = React.createClass({
 	}
 });
 
-Components.Link = ReactRedux.connect(state => ({ commits: state.settings.commits }))(Components.Link);
+BranchManager.Components.Link = ReactRedux.connect(state => ({ commits: state.settings.commits }))(BranchManager.Components.Link);

@@ -1,6 +1,4 @@
-﻿var Components = Components || {};
-
-Components.Text = React.createClass({
+﻿BranchManager.Components.Text = React.createClass({
 	displayName: 'Text',
 	render: function () {
 		return (

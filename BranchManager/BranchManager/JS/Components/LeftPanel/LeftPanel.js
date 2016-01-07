@@ -1,9 +1,7 @@
-﻿var Components = Components || {};
-
-Components.LeftPanel = React.createClass({
+﻿BranchManager.Components.LeftPanel = React.createClass({
 	displayName: 'LeftPanel',
 	componentDidMount: function () {
-		Store.dispatch(Actions.resize());
+		BranchManager.Actions.resize();
 	},
 	render: function () {
 		return (
@@ -12,8 +10,8 @@ Components.LeftPanel = React.createClass({
 				{
 					id: 'left-panel'
 				},
-				React.createElement(Components.ProjectList),
-				React.createElement(Components.Refresh),
-				React.createElement(Components.Gradient)));
+				React.createElement(BranchManager.Components.ProjectList),
+				React.createElement(BranchManager.Components.Refresh),
+				React.createElement(BranchManager.Components.Gradient)));
 	}
 })

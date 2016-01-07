@@ -1,6 +1,4 @@
-﻿var Components = Components || {};
-
-Components.Gradient = React.createClass({
+﻿BranchManager.Components.Gradient = React.createClass({
 	displayName: 'Gradient',
 	render: function () {
 		return (
@@ -8,7 +6,7 @@ Components.Gradient = React.createClass({
 				'div',
 				{ id: 'gradient' },
 				React.createElement('span', { id : 'gradient-label' }, '0'),
-				React.createElement(Components.GradientInput),
+				React.createElement(BranchManager.Components.GradientInput),
 				React.createElement('div', { id : 'gradient-display' })));
 	}
 });

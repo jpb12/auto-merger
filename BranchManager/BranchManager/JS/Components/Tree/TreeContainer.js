@@ -1,10 +1,8 @@
-﻿var Components = Components || {};
-
-Components.TreeContainer = React.createClass({
+﻿BranchManager.Components.TreeContainer = React.createClass({
 	displayName: 'TreeContainer',
 	getTreeData: function () {
 		if (this.props.config.every(project => project.projectUrl !== this.props.projectUrl)) {
-			Store.dispatch(Actions.setProject(this.props.config[0].projectUrl));
+			BranchManager.Actions.setProject(this.props.config[0].projectUrl);
 			return {
 				nodes: [],
 				links: []
@@ -43,7 +41,7 @@ Components.TreeContainer = React.createClass({
 		};
 	},
 	handleResize: function () {
-		Store.dispatch(Actions.resize());
+		BranchManager.Actions.resize();
 	},
 	componentDidMount: function () {
 		$(window).on('resize', this.handleResize);
@@ -58,7 +56,7 @@ Components.TreeContainer = React.createClass({
 				{
 					id: 'tree'
 				},
-				React.createElement(Components.Spinner)));
+				React.createElement(BranchManager.Components.Spinner)));
 		}
 
 		return (
@@ -67,15 +65,15 @@ Components.TreeContainer = React.createClass({
 				{
 					id: 'tree'
 				},
-				React.createElement(Components.Tree, this.getTreeData())));
+				React.createElement(BranchManager.Components.Tree, this.getTreeData())));
 	}
 })
 
-Components.TreeContainer = ReactRedux.connect(
+BranchManager.Components.TreeContainer = ReactRedux.connect(
 	state => (
 		{
 			config: state.config.data,
 			loading: state.config.loading,
 			dimensions: state.dimensions,
 			projectUrl: state.settings.projectUrl
-	}))(Components.TreeContainer);
+	}))(BranchManager.Components.TreeContainer);

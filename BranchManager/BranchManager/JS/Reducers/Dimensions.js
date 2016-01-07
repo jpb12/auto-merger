@@ -1,6 +1,4 @@
-﻿var Reducers = Reducers || {};
-
-Reducers.dimensions = function (state, action) {
+﻿BranchManager.Reducers.dimensions = function (state, action) {
 	function getContentWidth() {
 		return getFullWidth() - margins.left - margins.right;
 	}
@@ -30,7 +28,7 @@ Reducers.dimensions = function (state, action) {
 	}
 
 	switch (action.type) {
-		case ActionType.RESIZE:
+		case BranchManager.Actions.ActionType.RESIZE:
 			return Object.assign({}, state, {
 				contentWidth: getContentWidth(),
 				fullWidth: getFullWidth(),

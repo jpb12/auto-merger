@@ -1,6 +1,4 @@
-﻿var Components = Components || {};
-
-Components.Tree = React.createClass({
+﻿BranchManager.Components.Tree = React.createClass({
 	displayName: 'Tree',
 	render: function () {
 		return (
@@ -9,15 +7,16 @@ Components.Tree = React.createClass({
 				{
 					width: this.props.width
 				},
-				this.props.links.map(link => React.createElement(
-					Components.Link,
-					{
-						key: link.target.name,
-						link: link
-					})),
+				this.props.links.map(link =>
+					React.createElement(
+						BranchManager.Components.Link,
+						{
+							key: link.target.name,
+							link: link
+						})),
 				this.props.nodes.map(node =>
 					React.createElement(
-						Components.Node,
+						BranchManager.Components.Node,
 						{
 							key: node.name,
 							node: node
@@ -25,4 +24,4 @@ Components.Tree = React.createClass({
 	}
 });
 
-Components.Tree = ReactRedux.connect(state => ({ width: state.dimensions.fullWidth }))(Components.Tree);
+BranchManager.Components.Tree = ReactRedux.connect(state => ({ width: state.dimensions.fullWidth }))(BranchManager.Components.Tree);

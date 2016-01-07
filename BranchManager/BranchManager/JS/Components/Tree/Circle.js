@@ -1,8 +1,7 @@
-﻿var Components = Components || {};
-
-Components.Circle = React.createClass({
+﻿BranchManager.Components.Circle = React.createClass({
 	displayName: 'Circle',
 	render: function () {
-		return (React.createElement('circle'));
+		// Firefox bug: r is not read from css
+		return (React.createElement('circle', { r: 4.5 }));
 	}
 })

@@ -1,9 +1,7 @@
-﻿var Components = Components || {};
-
-Components.Main = React.createClass({
+﻿BranchManager.Components.Main = React.createClass({
 	displayName: 'Main',
-	componentDidMount: function () {
-		Store.dispatch(Actions.getConfig());
+	componentWillMount: function () {
+		BranchManager.Actions.getConfig();
 	},
 	render: function () {
 		return (
@@ -12,10 +10,10 @@ Components.Main = React.createClass({
 				{
 					id: 'container'
 				},
-				React.createElement(Components.LeftPanel),
-				React.createElement(Components.TreeContainer),
-				this.props.hasActiveNode ? React.createElement(Components.RightPanel) : undefined));
+				React.createElement(BranchManager.Components.LeftPanel),
+				React.createElement(BranchManager.Components.TreeContainer),
+				this.props.hasActiveNode ? React.createElement(BranchManager.Components.RightPanel) : undefined));
 	}
 })
 
-Components.Main = ReactRedux.connect(state => ({ hasActiveNode: !!state.activeNode }))(Components.Main);
+BranchManager.Components.Main = ReactRedux.connect(state => ({ hasActiveNode: !!state.activeNode }))(BranchManager.Components.Main);

@@ -1,1 +1,1 @@
-﻿var Store = Redux.createStore(Redux.combineReducers(Reducers));
+﻿BranchManager.Store = Redux.createStore(Redux.combineReducers(BranchManager.Reducers));
