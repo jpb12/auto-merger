@@ -134,6 +134,7 @@ h2 {
 	margin: 0;
 	color: white;
 	background-color: #4A67CE;
+	word-wrap: break-word;
 }
 
 /* Misc */
