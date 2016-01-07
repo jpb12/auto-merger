@@ -172,6 +172,7 @@
     <Content Include="JS\Components\LeftPanel\Gradient.js" />
     <Content Include="JS\Components\LeftPanel\GradientInput.js" />
     <Content Include="JS\Components\LeftPanel\LeftPanel.js" />
+    <Content Include="JS\Components\LeftPanel\Orientation.js" />
     <Content Include="JS\Components\LeftPanel\Project.js" />
     <Content Include="JS\Components\LeftPanel\ProjectList.js" />
     <Content Include="JS\Components\LeftPanel\Refresh.js" />

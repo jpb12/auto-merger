@@ -3,7 +3,6 @@
 		return this.props.link.source.branches.filter(branch => branch.child == this.props.link.target)[0];
 	},
 	displayName: 'Link',
-	diagonal: d3.svg.diagonal().projection(function (d) { return [d.y, d.x]; }),
 	getClassName: function () {
 		var className = this.branch().enabled ? 'enabled' : 'disabled'
 		className += this.props.link.source.exists && this.props.link.target.exists
@@ -39,6 +38,13 @@
 			return 'rgb(' + red + ', ' + blue + ', ' + green + ')';
 		}
 	},
+	getD: function() {
+		var diagonal = this.props.horizontal
+			? d3.svg.diagonal().projection(d => [d.y, d.x])
+			: d3.svg.diagonal().projection(d => [d.x, d.y]);
+
+		return diagonal({ source: this.props.link.source, target: this.props.link.target });
+	},
 	render: function() {
 		return (
 			React.createElement(
@@ -46,9 +52,14 @@
 				{
 					className: this.getClassName(),
 					stroke: this.getColour(),
-					d: this.diagonal({ source: this.props.link.source, target: this.props.link.target })
+					d: this.getD()
 				}))
 	}
 });
 
-BranchManager.Components.Link = ReactRedux.connect(state => ({ commits: state.settings.commits }))(BranchManager.Components.Link);
+BranchManager.Components.Link = ReactRedux.connect(
+	state => (
+		{
+			commits: state.settings.commits,
+			horizontal: state.settings.horizontal
+	}))(BranchManager.Components.Link);

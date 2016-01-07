@@ -4,6 +4,7 @@
 		RESIZE: 'RESIZE',
 		SET_ACTIVE_NODE: 'SET_ACTIVE_NODE',
 		SET_COMMITS: 'SET_COMMITS',
+		SET_ORIENTATION: 'SET_ORIENTATION',
 		SET_PROJECT: 'SET_PROJECT'
 	},
 	getConfig: function () {
@@ -38,8 +39,14 @@
 	},
 	setCommits: function (commits) {
 		BranchManager.Store.dispatch({
-			type: ActionType.SET_COMMITS,
+			type: BranchManager.Actions.ActionType.SET_COMMITS,
 			commits
+		});
+	},
+	setOrientation: function (horizontal) {
+		BranchManager.Store.dispatch({
+			type: BranchManager.Actions.ActionType.SET_ORIENTATION,
+			horizontal
 		});
 	},
 	setProject: function (projectUrl) {

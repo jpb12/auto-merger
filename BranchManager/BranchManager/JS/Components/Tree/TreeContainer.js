@@ -12,7 +12,9 @@
 		var project = this.props.config.filter(project => project.projectUrl === this.props.projectUrl)[0]
 
 		var tree = d3.layout.tree()
-			.size([this.props.dimensions.height, this.props.dimensions.contentWidth])
+			.size(this.props.horizontal
+				? [this.props.dimensions.height, this.props.dimensions.contentWidth]
+				: [this.props.dimensions.contentWidth, this.props.dimensions.height])
 			.children(node => node.branches.map(item => item.child));
 
 		// d3 trees can only have one root node, so to show the merge tree when there are multiple nodes
@@ -28,9 +30,15 @@
 		// the full svg.  We also need to apply the margins
 		var depth = Math.max.apply(null, nodes.map(node => node.depth));
 		nodes.forEach(node => {
-			node.y = (node.y - this.props.dimensions.contentWidth / depth) * (depth / (depth - 1));
-			node.x += this.props.dimensions.margins.top;
-			node.y += this.props.dimensions.margins.left;
+			if (this.props.horizontal) {
+				node.y = (node.y - this.props.dimensions.contentWidth / depth) * (depth / (depth - 1));
+				node.x += this.props.dimensions.margins.top;
+				node.y += this.props.dimensions.margins.left;
+			} else {
+				node.y = (node.y - this.props.dimensions.height / depth) * (depth / (depth - 1));
+				node.x += this.props.dimensions.margins.left;
+				node.y += this.props.dimensions.margins.top;
+			}
 		});
 
 		var links = tree.links(nodes);
@@ -75,5 +83,6 @@ BranchManager.Components.TreeContainer = ReactRedux.connect(
 			config: state.config.data,
 			loading: state.config.loading,
 			dimensions: state.dimensions,
+			horizontal: state.settings.horizontal,
 			projectUrl: state.settings.projectUrl
 	}))(BranchManager.Components.TreeContainer);

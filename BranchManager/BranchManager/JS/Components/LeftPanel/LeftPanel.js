@@ -12,6 +12,7 @@
 				},
 				React.createElement(BranchManager.Components.ProjectList),
 				React.createElement(BranchManager.Components.Refresh),
-				React.createElement(BranchManager.Components.Gradient)));
+				React.createElement(BranchManager.Components.Gradient),
+				React.createElement(BranchManager.Components.Orientation)));
 	}
 })
