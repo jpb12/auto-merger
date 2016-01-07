@@ -10,6 +10,7 @@
 				{
 					id: 'left-panel'
 				},
+				React.createElement('h3', {}, 'Projects'),
 				React.createElement(BranchManager.Components.ProjectList),
 				React.createElement(BranchManager.Components.Refresh),
 				React.createElement(BranchManager.Components.Gradient),

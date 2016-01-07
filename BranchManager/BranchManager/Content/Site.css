@@ -24,6 +24,11 @@ body, html, #container, #app {
 	position: relative;
 }
 
+h3 {
+	margin: 5px;
+	text-align: center;
+}
+
 ul {
 	list-style-type: none;
 	padding: 0;
@@ -31,7 +36,7 @@ ul {
 }
 
 ul.project-list {
-	margin: 20px 0;
+	margin-bottom: 20px;
 }
 
 #gradient {
