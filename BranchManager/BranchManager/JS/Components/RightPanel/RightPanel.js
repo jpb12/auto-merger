@@ -16,7 +16,8 @@
 					id: 'right-panel',
 					className: this.props.activeNode ? '' : 'hidden'
 				},
-				React.createElement('h2', {}, this.props.activeNode.name)));
+				React.createElement('h2', {}, this.props.activeNode.name),
+				React.createElement(BranchManager.Components.Close)));
 	}
 })
 

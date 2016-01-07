@@ -177,6 +177,7 @@
     <Content Include="JS\Components\LeftPanel\Refresh.js" />
     <Content Include="JS\Components\Main.js" />
     <Content Include="JS\Components\Misc\Spinner.js" />
+    <Content Include="JS\Components\RightPanel\Close.js" />
     <Content Include="JS\Components\RightPanel\RightPanel.js" />
     <Content Include="JS\Components\Tree\Node.js" />
     <Content Include="JS\Components\Tree\Circle.js" />

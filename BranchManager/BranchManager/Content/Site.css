@@ -121,7 +121,7 @@ g.not-exists circle {
 /* Right Panel */
 
 #right-panel {
-	width: 200px;
+	width: 300px;
 	height: 100%;
 	float: left;
 	box-shadow: -2px 0 4px #B7B7B7;
@@ -130,11 +130,26 @@ g.not-exists circle {
 
 h2 {
 	text-align: center;
-	padding: 5px 0;
+	padding: 5px 25px 5px 0;
 	margin: 0;
 	color: white;
 	background-color: #4A67CE;
 	word-wrap: break-word;
+}
+
+.close {
+	position: absolute;
+	top: 6px;
+	right: 3px;
+	height: 16px;
+	width: 16px;
+	color: white;
+	border-style: solid;
+	border-width: 2px;
+	border-radius: 50%;
+	padding: 2px;
+	text-align: center;
+	cursor: pointer;
 }
 
 /* Misc */
