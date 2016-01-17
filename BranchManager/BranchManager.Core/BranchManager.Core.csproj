@@ -55,11 +55,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Svn\SvnInterface.cs" />
+    <Compile Include="Tree\BranchInfoGetter.cs" />
     <Compile Include="Tree\UnmergedRevisionGetter.cs" />
     <Compile Include="Types\Branch.cs" />
     <Compile Include="Tree\MergeTreeGetter.cs" />
     <Compile Include="Ninject\CoreModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Types\BranchInfo.cs" />
     <Compile Include="Types\Node.cs" />
     <Compile Include="Types\Project.cs" />
   </ItemGroup>

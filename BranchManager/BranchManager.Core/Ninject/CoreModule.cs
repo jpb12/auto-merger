@@ -9,6 +9,7 @@ namespace BranchManager.Core.Ninject
 	{
 		public override void Load()
 		{
+			Bind<IBranchInfoGetter>().To<BranchInfoGetter>();
 			Bind<IMergeTreeGetter>().To<MergeTreeGetter>();
 			Bind<IUnmergedRevisionGetter>().To<UnmergedRevisionGetter>();
 			Bind<ISvnInterface>().To<SvnInterface>();
