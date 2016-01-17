@@ -18,9 +18,9 @@ body, html, #container, #app {
 	width: 200px;
 	height: 100%;
 	float: left;
-	background-color: #4A67CE;
+	background-color: #4A5FAB;
 	color: white;
-	box-shadow: 2px 0 4px #4A67CE;
+	box-shadow: 2px 0 4px #4A5FAB;
 	position: relative;
 }
 
@@ -37,6 +37,30 @@ ul {
 
 ul.project-list {
 	margin-bottom: 20px;
+}
+
+ul.project-list li {
+	margin: 0 5px;
+	padding: 5px;
+	background-color: #4A67CE;
+	word-wrap: break-word;
+	text-align: center;
+	cursor: pointer;
+}
+
+ul.project-list li:first-of-type {
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+
+ul.project-list li:last-of-type {
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+ul.project-list li.active {
+	background-color: #41559C;
+	box-shadow: inset 0px 2px 4px #374679;
 }
 
 #gradient {
@@ -87,7 +111,7 @@ ul.project-list {
 
 #tree .spinner {
 	margin: 10px;
-	color: #4A67CE;
+	color: #4A5FAB;
 }
 
 svg {
@@ -135,17 +159,17 @@ g.not-exists circle {
 
 h2 {
 	text-align: center;
-	padding: 5px 25px 5px 0;
+	padding: 5px 28px 5px 0;
 	margin: 0;
 	color: white;
-	background-color: #4A67CE;
+	background-color: #4A5FAB;
 	word-wrap: break-word;
 }
 
 .close {
 	position: absolute;
 	top: 6px;
-	right: 3px;
+	right: 6px;
 	height: 16px;
 	width: 16px;
 	color: white;
@@ -171,11 +195,10 @@ h2 {
 	border-radius: 20px;
 	word-wrap: break-word;
 	text-align: center;
-	background-color: #4A5FAB;
 	cursor: pointer;
 }
 
 .button.active, .button:hover {
 	background-color: white;
-	color: #4A5FAB;
+	color: #4A67CE;
 }

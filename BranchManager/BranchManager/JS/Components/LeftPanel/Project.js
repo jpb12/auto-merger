@@ -4,13 +4,7 @@
 		BranchManager.Actions.setProject(this.props.project.projectUrl);
 	},
 	getClassName: function () {
-		var className = 'button';
-
-		if (this.props.project.projectUrl === this.props.currentProjectUrl) {
-			className += ' active';
-		}
-
-		return className;
+		return this.props.project.projectUrl === this.props.currentProjectUrl ? 'active' : null;
 	},
 	render: function () {
 		return (
