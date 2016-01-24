@@ -157,6 +157,12 @@ g.not-exists circle {
 	background-color: #F3F3F3;
 }
 
+#right-panel .spinner {
+	margin: 10px auto;
+	display: table;
+	color: #4A5FAB;
+}
+
 h2 {
 	text-align: center;
 	padding: 5px 28px 5px 0;
@@ -179,6 +185,19 @@ h2 {
 	padding: 2px;
 	text-align: center;
 	cursor: pointer;
+}
+
+#right-panel p {
+	margin: 5px;
+}
+
+.italics {
+	font-style: italic;
+}
+
+.bold {
+	font-weight: bold;
+	color: #4A67CE;
 }
 
 /* Misc */

@@ -104,5 +104,5 @@ BranchManager.Components.TreeContainer = ReactRedux.connect(
 			loading: state.config.loading,
 			horizontal: state.settings.horizontal,
 			projectUrl: state.settings.projectUrl,
-			rightPanelVisible: !!state.activeNode
-	}))(BranchManager.Components.TreeContainer);
+			rightPanelVisible: !!state.activeNode.node
+		}))(BranchManager.Components.TreeContainer);

@@ -36,6 +36,8 @@ namespace BranchManager.Core.Tree
 							continue;
 						}
 						return new BranchInfo(
+							name,
+							projectUrl,
 							change.CopyFromPath.Substring(change.CopyFromPath.LastIndexOf('/') + 1),
 							initialCommit.Time,
 							initialCommit.Revision);
@@ -43,6 +45,8 @@ namespace BranchManager.Core.Tree
 			}
 
 			return new BranchInfo(
+				name,
+				projectUrl,
 				null,
 				initialCommit.Time,
 				initialCommit.Revision);

@@ -5,12 +5,17 @@
 			React.createElement(
 				'div',
 				{
-					id: 'right-panel',
-					className: this.props.activeNode ? '' : 'hidden'
+					id: 'right-panel'
 				},
-				React.createElement('h2', {}, this.props.activeNode.name),
-				React.createElement(BranchManager.Components.Close)));
+				React.createElement('h2', {}, this.props.node.name),
+				React.createElement(BranchManager.Components.Close),
+				React.createElement(this.props.loading ? BranchManager.Components.Spinner : BranchManager.Components.Summary)));
 	}
 })
 
-BranchManager.Components.RightPanel = ReactRedux.connect(state => ({ activeNode: state.activeNode }))(BranchManager.Components.RightPanel);
+BranchManager.Components.RightPanel = ReactRedux.connect(
+	state => (
+		{
+			loading: state.activeNode.loading,
+			node: state.activeNode.node
+		}))(BranchManager.Components.RightPanel);

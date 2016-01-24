@@ -12,8 +12,8 @@
 				},
 				React.createElement(BranchManager.Components.LeftPanel),
 				React.createElement(BranchManager.Components.TreeContainer),
-				this.props.hasActiveNode ? React.createElement(BranchManager.Components.RightPanel) : undefined));
+				this.props.rightPanelVisible ? React.createElement(BranchManager.Components.RightPanel) : undefined));
 	}
 })
 
-BranchManager.Components.Main = ReactRedux.connect(state => ({ hasActiveNode: !!state.activeNode }))(BranchManager.Components.Main);
+BranchManager.Components.Main = ReactRedux.connect(state => ({ rightPanelVisible: !!state.activeNode.node }))(BranchManager.Components.Main);

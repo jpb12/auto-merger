@@ -1,7 +1,7 @@
 ﻿BranchManager.Components.Node = React.createClass({
 	displayName: 'Node',
 	handleClick: function() {
-		BranchManager.Actions.setActiveNode(this.props.node);
+		BranchManager.Actions.setActiveNode(this.props.node, this.props.projectUrl);
 	},
 	getTransform: function() {
 		return this.props.horizontal
@@ -22,4 +22,9 @@
 	}
 });
 
-BranchManager.Components.Node = ReactRedux.connect(state => ({ horizontal: state.settings.horizontal }))(BranchManager.Components.Node);
+BranchManager.Components.Node = ReactRedux.connect(
+	state => (
+		{
+			horizontal: state.settings.horizontal,
+			projectUrl: state.settings.projectUrl
+		}))(BranchManager.Components.Node);
