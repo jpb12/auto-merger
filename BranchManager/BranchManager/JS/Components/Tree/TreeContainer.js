@@ -1,6 +1,10 @@
 ﻿BranchManager.Components.TreeContainer = React.createClass({
 	displayName: 'TreeContainer',
 	getTreeData: function () {
+		var height = this.state.height - this.state.margins.top - this.state.margins.bottom;
+		var width = this.state.width - (this.props.rightPanelVisible ? 500 : 200);
+		var contentWidth = width - this.state.margins.left - this.state.margins.right;
+
 		if (this.props.config.every(project => project.projectUrl !== this.props.projectUrl)) {
 			BranchManager.Actions.setProject(this.props.config[0].projectUrl);
 			return {
@@ -13,8 +17,8 @@
 
 		var tree = d3.layout.tree()
 			.size(this.props.horizontal
-				? [this.props.dimensions.height, this.props.dimensions.contentWidth]
-				: [this.props.dimensions.contentWidth, this.props.dimensions.height])
+				? [height, contentWidth]
+				: [contentWidth, height])
 			.children(node => node.branches.map(item => item.child));
 
 		// d3 trees can only have one root node, so to show the merge tree when there are multiple nodes
@@ -31,13 +35,13 @@
 		var depth = Math.max.apply(null, nodes.map(node => node.depth));
 		nodes.forEach(node => {
 			if (this.props.horizontal) {
-				node.y = (node.y - this.props.dimensions.contentWidth / depth) * (depth / (depth - 1));
-				node.x += this.props.dimensions.margins.top;
-				node.y += this.props.dimensions.margins.left;
+				node.y = (node.y - contentWidth / depth) * (depth / (depth - 1));
+				node.x += this.state.margins.top;
+				node.y += this.state.margins.left;
 			} else {
-				node.y = (node.y - this.props.dimensions.height / depth) * (depth / (depth - 1));
-				node.x += this.props.dimensions.margins.left;
-				node.y += this.props.dimensions.margins.top;
+				node.y = (node.y - height / depth) * (depth / (depth - 1));
+				node.x += this.state.margins.left;
+				node.y += this.state.margins.top;
 			}
 		});
 
@@ -45,17 +49,33 @@
 
 		return {
 			nodes: nodes,
-			links: links
+			links: links,
+			width: width
 		};
 	},
 	handleResize: function () {
-		BranchManager.Actions.resize();
+		this.setState({
+			width: $(window).width(),
+			height: $(window).height()
+		});
 	},
 	componentDidMount: function () {
 		$(window).on('resize', this.handleResize);
 	},
 	componentWillUnmount: function () {
 		$(window).off('resize', this.handleResize);
+	},
+	getInitialState: function () {
+		return {
+			margins: {
+				top: 20,
+				bottom: 20,
+				left: 20,
+				right: 100
+			},
+			width: $(window).width(),
+			height: $(window).height()
+		};
 	},
 	render: function () {
 		if (this.props.loading) {
@@ -82,7 +102,7 @@ BranchManager.Components.TreeContainer = ReactRedux.connect(
 		{
 			config: state.config.data,
 			loading: state.config.loading,
-			dimensions: state.dimensions,
 			horizontal: state.settings.horizontal,
-			projectUrl: state.settings.projectUrl
+			projectUrl: state.settings.projectUrl,
+			rightPanelVisible: !!state.activeNode
 	}))(BranchManager.Components.TreeContainer);

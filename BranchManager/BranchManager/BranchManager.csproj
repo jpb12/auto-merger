@@ -191,7 +191,6 @@
     <Content Include="JS\Reducers\ActiveNode.js" />
     <Content Include="JS\Reducers\Config.js" />
     <Content Include="JS\Reducers\Settings.js" />
-    <Content Include="JS\Reducers\Dimensions.js" />
     <Content Include="JS\Store.js" />
     <Content Include="Scripts\d3.js" />
     <Content Include="Scripts\jquery.js" />

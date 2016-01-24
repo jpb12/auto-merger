@@ -1,7 +1,6 @@
 ﻿BranchManager.Actions = {
 	ActionType: {
 		GET_CONFIG: 'GET_CONFIG',
-		RESIZE: 'RESIZE',
 		SET_ACTIVE_NODE: 'SET_ACTIVE_NODE',
 		SET_COMMITS: 'SET_COMMITS',
 		SET_ORIENTATION: 'SET_ORIENTATION',
@@ -24,11 +23,6 @@
 			type: BranchManager.Actions.ActionType.GET_CONFIG,
 			success: true,
 			response
-		});
-	},
-	resize: function() {
-		BranchManager.Store.dispatch({
-			type: BranchManager.Actions.ActionType.RESIZE
 		});
 	},
 	setActiveNode: function(node) {

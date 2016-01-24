@@ -1,8 +1,5 @@
 ﻿BranchManager.Components.LeftPanel = React.createClass({
 	displayName: 'LeftPanel',
-	componentDidMount: function () {
-		BranchManager.Actions.resize();
-	},
 	render: function () {
 		return (
 			React.createElement(

@@ -26,5 +26,3 @@
 						}))));
 	}
 });
-
-BranchManager.Components.Tree = ReactRedux.connect(state => ({ width: state.dimensions.fullWidth }))(BranchManager.Components.Tree);

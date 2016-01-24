@@ -1,13 +1,5 @@
 ﻿BranchManager.Components.RightPanel = React.createClass({
 	displayName: 'RightPanel',
-	componentDidMount: function () {
-		BranchManager.Actions.resize();
-	},
-	componentWillUnmount: function () {
-		// TODO: Massive hack
-		$(ReactDOM.findDOMNode(this)).width(0);
-		BranchManager.Actions.resize();
-	},
 	render: function () {
 		return (
 			React.createElement(
