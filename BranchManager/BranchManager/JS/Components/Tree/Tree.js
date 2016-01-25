@@ -19,10 +19,7 @@
 						BranchManager.Components.Node,
 						{
 							key: node.name,
-							node: node,
-							// TODO: React bug, this shouldn't be necessary but otherwise nodes do not update
-							x: node.x,
-							y: node.y
+							node: node
 						}))));
 	}
 });

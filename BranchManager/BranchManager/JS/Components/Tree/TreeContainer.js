@@ -24,7 +24,7 @@
 		// d3 trees can only have one root node, so to show the merge tree when there are multiple nodes
 		// we add a new parent of all the roots, which we do not show
 		var parentNode = {
-			branches: project.roots.map(node => ({ child: node }))
+			branches: project.roots.map(node => ({ child: $.extend(true, {}, node) }))
 		};
 
 		var allNodes = tree.nodes(parentNode);
