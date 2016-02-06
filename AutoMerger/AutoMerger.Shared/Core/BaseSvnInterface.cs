@@ -125,13 +125,8 @@ namespace AutoMerger.Shared.Core
 					out value);
 			}
 
-			if (value == null)
-			{
-				return null;
-			}
-
 			var branchPath = "/" + GetBranchPath(parent) + ":";
-			var branchRow = value.Split('\n').SingleOrDefault(r => r.StartsWith(branchPath));
+			var branchRow = value?.Split('\n').SingleOrDefault(r => r.StartsWith(branchPath));
 
 			if (branchRow == null)
 			{

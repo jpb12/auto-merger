@@ -2,30 +2,17 @@
 {
 	public class Branch
 	{
-		private readonly bool _enabled;
-		private readonly Node _child;
-		private readonly long? _unmergedRevisions;
-
 		public Branch(Node child, bool enabled, long? unmergedRevisions)
 		{
-			_child = child;
-			_enabled = enabled;
-			_unmergedRevisions = unmergedRevisions;
+			Child = child;
+			Enabled = enabled;
+			UnmergedRevisions = unmergedRevisions;
 		}
 
-		public Node Child
-		{
-			get { return _child; }
-		}
+		public Node Child { get; }
 
-		public bool Enabled
-		{
-			get { return _enabled; }
-		}
+		public bool Enabled { get; }
 
-		public long? UnmergedRevisions
-		{
-			get { return _unmergedRevisions; }
-		}
+		public long? UnmergedRevisions { get; }
 	}
 }

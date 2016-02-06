@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
@@ -7,28 +6,19 @@ namespace BranchManager.Core.Types
 {
 	public class Project
 	{
-		private readonly string _projectUrl;
-		private readonly ReadOnlyCollection<Node> _roots;
-
 		public Project(string projectUrl, IEnumerable<Node> roots)
 		{
-			_projectUrl = projectUrl;
-			_roots = roots.ToList().AsReadOnly();
+			ProjectUrl = projectUrl;
+			Roots = roots.ToList().AsReadOnly();
 		}
 
-		public string ProjectUrl
-		{
-			get { return _projectUrl; }
-		}
+		public string ProjectUrl { get; }
 
-		public ReadOnlyCollection<Node> Roots
-		{
-			get { return _roots; }
-		}
+		public ReadOnlyCollection<Node> Roots { get; }
 
 		public string Name
 		{
-			get { return _projectUrl.Substring(_projectUrl.LastIndexOf('/') + 1); }
+			get { return ProjectUrl.Substring(ProjectUrl.LastIndexOf('/') + 1); }
 		}
 	}
 }

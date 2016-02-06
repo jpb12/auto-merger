@@ -4,12 +4,6 @@ namespace AutoMerger.Results
 {
 	class MergeResult
 	{
-		private readonly string _parent;
-		private readonly string _child;
-		private readonly bool _success;
-		private readonly string _message;
-		private readonly Exception _exception;
-
 		public MergeResult(
 			string parent,
 			string child,
@@ -17,36 +11,21 @@ namespace AutoMerger.Results
 			string message,
 			Exception exception = null)
 		{
-			_parent = parent;
-			_child = child;
-			_success = success;
-			_message = message;
-			_exception = exception;
+			Parent = parent;
+			Child = child;
+			Success = success;
+			Message = message;
+			Exception = exception;
 		}
 
-		public string Parent
-		{
-			get { return _parent; }
-		}
+		public string Parent { get; }
 
-		public string Child
-		{
-			get { return _child; }
-		}
+		public string Child { get; }
 
-		public bool Success
-		{
-			get { return _success; }
-		}
+		public bool Success { get; }
 
-		public string Message
-		{
-			get { return _message; }
-		}
+		public string Message { get; }
 
-		public Exception Exception
-		{
-			get { return _exception; }
-		}
+		public Exception Exception { get; }
 	}
 }

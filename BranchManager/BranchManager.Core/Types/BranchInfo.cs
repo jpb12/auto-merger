@@ -4,12 +4,6 @@ namespace BranchManager.Core.Types
 {
 	public class BranchInfo
 	{
-		private readonly string _name;
-		private readonly string _projectUrl;
-		private readonly string _creationBranch;
-		private readonly DateTime _creationTime;
-		private readonly long _creationRevision;
-
 		public BranchInfo(
 			string name,
 			string projectUrl,
@@ -17,36 +11,21 @@ namespace BranchManager.Core.Types
 			DateTime creationTime,
 			long creationRevision)
 		{
-			_name = name;
-			_projectUrl = projectUrl;
-			_creationBranch = creationBranch;
-			_creationTime = creationTime;
-			_creationRevision = creationRevision;
+			Name = name;
+			ProjectUrl = projectUrl;
+			CreationBranch = creationBranch;
+			CreationTime = creationTime;
+			CreationRevision = creationRevision;
 		}
 
-		public string Name
-		{
-			get { return _name; }
-		}
+		public string Name { get; }
 
-		public string ProjectUrl
-		{
-			get { return _projectUrl; }
-		}
+		public string ProjectUrl { get; }
 
-		public string CreationBranch
-		{
-			get { return _creationBranch; }
-		}
+		public string CreationBranch { get; }
 
-		public DateTime CreationTime
-		{
-			get { return _creationTime; }
-		}
+		public DateTime CreationTime { get; }
 
-		public long CreationRevision
-		{
-			get { return _creationRevision; }
-		}
+		public long CreationRevision { get; }
 	}
 }

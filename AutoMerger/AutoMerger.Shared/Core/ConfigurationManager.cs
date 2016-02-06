@@ -67,17 +67,9 @@ namespace AutoMerger.Shared.Core
 		private bool TryGetFromArguments(T configKey, out string value)
 		{
 			var argKey = "--" + ToKebabCase(configKey) + "=";
-
 			var arg = _args.SingleOrDefault(a => a.StartsWith(argKey));
-
-			if (arg == null)
-			{
-				value = null;
-				return false;
-			}
-
-			value =  arg.Replace(argKey, "");
-			return true;
+			value = arg?.Replace(argKey, "");
+			return value != null;
 		}
 
 		private string ToKebabCase(IConvertible key)

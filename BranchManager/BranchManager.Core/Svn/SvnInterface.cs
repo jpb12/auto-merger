@@ -30,7 +30,7 @@ namespace BranchManager.Core.Svn
 
 			client.Authentication.Clear();
 			client.Authentication.SslServerTrustHandlers +=
-				delegate (object sender, SvnSslServerTrustEventArgs e)
+				(sender, e) =>
 				{
 					e.AcceptedFailures = e.Failures;
 					e.Save = true;
